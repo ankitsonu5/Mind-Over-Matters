@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Forms</title></head>
+<body hidden>
+  <!-- Netlify form detection for the Next.js /guest page.
+       The client POSTs urlencoded data to /__forms.html. -->
+  <form name="guest-contact" netlify netlify-honeypot="bot-field" action="/" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="subject" />
+    <textarea name="message"></textarea>
+  </form>
+  <form name="guest-application" netlify netlify-honeypot="bot-field" action="/" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="timezone" />
+    <input type="text" name="profession" />
+    <input type="url" name="website" />
+    <input type="text" name="social" />
+    <textarea name="bio"></textarea>
+    <textarea name="topics"></textarea>
+    <select name="format"></select>
+  </form>
+  <form name="contact" netlify netlify-honeypot="bot-field" action="/" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="subject" />
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>

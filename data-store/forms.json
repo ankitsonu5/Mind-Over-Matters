@@ -1,0 +1,13 @@
+[
+  {
+    "id": "form0000contact1",
+    "name": "Contact Form",
+    "slug": "contact",
+    "html": "<div class=\"mom-field\">\n  <label>Name *</label>\n  <input type=\"text\" name=\"name\" required placeholder=\"Your name\" />\n</div>\n<div class=\"mom-field\">\n  <label>Email *</label>\n  <input type=\"email\" name=\"email\" required placeholder=\"you@example.com\" />\n</div>\n<div class=\"mom-field\">\n  <label>Message *</label>\n  <textarea name=\"message\" rows=\"5\" required placeholder=\"Write your message\u2026\"></textarea>\n</div>\n<button type=\"submit\" class=\"mom-submit\">Send Message</button>",
+    "css": ".mom-form { max-width: 560px; display: grid; gap: 14px; }\n.mom-form .mom-field { display: grid; gap: 6px; }\n.mom-form label { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #9fb1d1; }\n.mom-form input, .mom-form textarea, .mom-form select {\n  background: #0a1120; border: 1px solid #16233c; border-radius: 8px;\n  color: #eef2fa; padding: 12px 14px; font: inherit; width: 100%;\n}\n.mom-form input:focus, .mom-form textarea:focus { outline: none; border-color: #61dafb; }\n.mom-form .mom-submit {\n  background: #0a4aaa; color: #fff; border: 0; border-radius: 8px;\n  padding: 13px 22px; font-weight: 600; letter-spacing: .08em; cursor: pointer;\n}\n.mom-form .mom-submit:hover { background: #0d5ed6; }\n.mom-form-status { font-size: 14px; color: #7ee2a8; }",
+    "successMessage": "Thanks! The studio will get back to you soon.",
+    "active": true,
+    "createdAt": "2026-07-21T05:49:30.690311Z",
+    "updatedAt": "2026-07-21T05:49:30.690311Z"
+  }
+]

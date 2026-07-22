@@ -1,0 +1,12 @@
+[
+  {
+    "id": "user0000admin001",
+    "username": "admin",
+    "name": "Administrator",
+    "email": "",
+    "role": "admin",
+    "passwordHash": "015a1ffcc6df84cf57fe920b1c215f04c8c94f800d6a34a36ed4f866631d21bb",
+    "createdAt": "2026-07-21T05:49:14.602Z",
+    "updatedAt": "2026-07-21T05:49:14.602Z"
+  }
+]

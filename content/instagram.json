@@ -1,0 +1,17 @@
+{
+  "eyebrow": "Stay Connected",
+  "titleMain": "Follow Us On ",
+  "titleAccent": "Instagram",
+  "handleText": "@mindovermatter.show",
+  "handleUrl": "https://www.instagram.com/mindovermatter.show/",
+  "items": [
+    { "href": "https://www.instagram.com/reel/DXF86MrkVVz/", "img": "/images/Mom-Reels-8.jpg", "alt": "Behind the Mic", "type": "video", "badge": "Reel" },
+    { "href": "https://www.instagram.com/reel/DXDR4r7kYyq/", "img": "/images/MOm-REEl-7.jpg", "alt": "Behind the Mic", "type": "video", "badge": "Reel" },
+    { "href": "https://www.instagram.com/reel/DXCclYMEW4z/", "img": "/images/mOM-REel-6.jpg", "alt": "Behind the Mic", "type": "video", "badge": "Reel" },
+    { "href": "https://www.instagram.com/reel/DXA-aJOjQeF/", "img": "/images/MoM-rEEl-5.jpg", "alt": "Episode 01", "type": "image", "badge": "Post" },
+    { "href": "https://www.instagram.com/reel/DW_yedkkXLd/", "img": "/images/mom-reel-4.jpg", "alt": "Studio Session", "type": "video", "badge": "Reel" },
+    { "href": "https://www.instagram.com/reel/DW9E4jxDaFl/", "img": "/images/Mom-Reel-3.jpg", "alt": "The Conversation", "type": "video", "badge": "Reel" },
+    { "href": "https://www.instagram.com/reel/DW2kLlxkaLk/", "img": "/images/Mom-Reel-2.jpg", "alt": "Quote", "type": "image", "badge": "Post" },
+    { "href": "https://www.instagram.com/reel/DW1kLlxkaLk/", "img": "/images/mind-over-matter1.jpg", "alt": "Mind Over Matter EP 01", "type": "video", "badge": "Reel" }
+  ]
+}
