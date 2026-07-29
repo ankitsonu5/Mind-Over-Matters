@@ -2,22 +2,16 @@
   "name": "mind-over-matter",
   "version": "1.0.0",
   "private": true,
+  "description": "Mind Over Matter — Next.js frontend + Express/MongoDB backend",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
+    "dev": "concurrently -n backend,frontend -c cyan,magenta \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "concurrently -n backend,frontend -c cyan,magenta \"npm --prefix backend start\" \"npm --prefix frontend start\""
   },
-  "dependencies": {
-    "gray-matter": "4.0.3",
-    "gsap": "3.12.5",
-    "jspdf": "^4.2.1",
-    "jspdf-autotable": "^5.0.8",
-    "marked": "12.0.2",
-    "mongodb": "^7.3.0",
-    "next": "14.2.35",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "three": "0.160.0",
-    "xlsx": "^0.18.5"
+  "devDependencies": {
+    "concurrently": "^9.1.0"
   }
 }

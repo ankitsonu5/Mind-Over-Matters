@@ -1,0 +1,21 @@
+{
+  "name": "mind-over-matter-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Next.js frontend for Mind Over Matter — talks to the backend API only",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "gsap": "3.12.5",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "next": "14.2.35",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.160.0",
+    "xlsx": "^0.18.5"
+  }
+}
