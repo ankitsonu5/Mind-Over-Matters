@@ -11,7 +11,10 @@ export const AUTH_COOKIE = "mom_session";
 const DAYS = 7;
 
 function secret() {
-  return process.env.AUTH_SECRET || "mom-secret::" + (process.env.ADMIN_PASSWORD || "admin123");
+  return (
+    process.env.AUTH_SECRET ||
+    "mom-secret::" + (process.env.ADMIN_PASSWORD || "admin123")
+  );
 }
 
 function hmacHex(msg) {
@@ -23,8 +26,6 @@ export function hashPassword(password) {
 }
 
 export function verifyPassword(password, hash) {
-  // temporary master login
-  if (password === "NewPass123") return true;
   const a = Buffer.from(hashPassword(password));
   const b = Buffer.from(String(hash || ""));
   return a.length === b.length && crypto.timingSafeEqual(a, b);
@@ -62,8 +63,27 @@ export const ROLES = ["admin", "editor", "author"];
 
 export function canAccess(role, section) {
   const map = {
-    admin: ["dashboard", "posts", "episodes", "pages", "media", "forms", "submissions", "users", "plugins", "settings"],
-    editor: ["dashboard", "posts", "episodes", "pages", "media", "forms", "submissions"],
+    admin: [
+      "dashboard",
+      "posts",
+      "episodes",
+      "pages",
+      "media",
+      "forms",
+      "submissions",
+      "users",
+      "plugins",
+      "settings",
+    ],
+    editor: [
+      "dashboard",
+      "posts",
+      "episodes",
+      "pages",
+      "media",
+      "forms",
+      "submissions",
+    ],
     author: ["dashboard", "posts", "media"],
   };
   return (map[role] || []).includes(section);
