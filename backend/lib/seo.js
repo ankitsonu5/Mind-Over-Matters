@@ -1,10 +1,15 @@
 // Shared SEO helpers for detail pages.
-export const SITE_URL = "https://mindovermatterpodcast.com";
+export const SITE_URL = "https://mindovermatterpodcasts.com";
 export const SITE_NAME = "Mind Over Matter";
 
 // Internal hosts: links to these stay normal (good for internal linking /
 // crawl flow). Everything else opens in a new tab with safe rel attributes.
-const INTERNAL_HOSTS = ["mindovermatterpodcast.com", "www.mindovermatterpodcast.com"];
+const INTERNAL_HOSTS = [
+  "mindovermatterpodcasts.com",
+  "www.mindovermatterpodcasts.com",
+  "mindovermatterpodcast.com",
+  "www.mindovermatterpodcast.com",
+];
 
 export function linkifyExternal(html) {
   if (!html) return html;

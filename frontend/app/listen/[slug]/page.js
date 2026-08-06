@@ -2,13 +2,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import s from "../../detail.module.css";
 import { platforms, getPlatform } from "@/data/platforms";
+import { SITE_URL } from "@/lib/seo";
 
 export function generateStaticParams() {
   return platforms.map((p) => ({ slug: p.slug }));
 }
 export function generateMetadata({ params }) {
   const p = getPlatform(params.slug);
-  return { title: p ? `Listen on ${p.name} — Mind Over Matter` : "Listen" };
+  const url = `${SITE_URL}/listen/${params.slug}`;
+  return { title: p ? `Listen on ${p.name} — Mind Over Matter` : "Listen", alternates: { canonical: url } };
 }
 
 export default function PlatformDetail({ params }) {

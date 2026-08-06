@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { apiGet } from "@/lib/api";
+import { SITE_URL } from "@/lib/seo";
 import s from "../../detail.module.css";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +13,8 @@ async function loadPage(slug) {
 
 export async function generateMetadata({ params }) {
   const page = await loadPage(params.slug);
-  return { title: page ? page.title : "Page" };
+  const url = `${SITE_URL}/p/${params.slug}`;
+  return { title: page ? page.title : "Page", alternates: { canonical: url } };
 }
 
 export default async function CustomPage({ params }) {

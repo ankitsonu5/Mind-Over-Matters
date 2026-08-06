@@ -60,7 +60,7 @@ export default function SettingsAdmin() {
           <div className="f-row"><label className="f-label">Tagline</label>
             <input className="f-in" value={s.tagline || ""} onChange={(e) => set("tagline", e.target.value)} /></div>
           <div className="f-row"><label className="f-label">Site URL (used for the sitemap and canonical URLs)</label>
-            <input className="f-in" value={s.siteUrl || ""} onChange={(e) => set("siteUrl", e.target.value)} placeholder="https://mindovermatterpodcast.com" /></div>
+            <input className="f-in" value={s.siteUrl || ""} onChange={(e) => set("siteUrl", e.target.value)} placeholder="https://mindovermatterpodcasts.com" /></div>
           <div className="f-row"><label className="f-label">Contact email</label>
             <input className="f-in" value={s.contactEmail || ""} onChange={(e) => set("contactEmail", e.target.value)} /></div>
           <div className="f-row" style={{ marginBottom: 0 }}>

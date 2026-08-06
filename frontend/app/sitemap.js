@@ -6,7 +6,7 @@ export default async function sitemap() {
   const data = (await apiGet("/api/public/sitemap", null)) || {
     settings: {}, posts: [], episodes: [], pages: [],
   };
-  const base = (data.settings?.siteUrl || "https://mindovermatterpodcast.com").replace(/\/+$/, "");
+  const base = (data.settings?.siteUrl || "https://mindovermatterpodcasts.com").replace(/\/+$/, "");
 
   return [
     { url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },

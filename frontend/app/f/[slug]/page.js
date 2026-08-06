@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { apiGet } from "@/lib/api";
+import { SITE_URL } from "@/lib/seo";
 import s from "../../detail.module.css";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +12,8 @@ async function loadForm(slug) {
 
 export async function generateMetadata({ params }) {
   const form = await loadForm(params.slug);
-  return { title: form ? `${form.name} — Mind Over Matter` : "Form" };
+  const url = `${SITE_URL}/f/${params.slug}`;
+  return { title: form ? `${form.name} — Mind Over Matter` : "Form", alternates: { canonical: url } };
 }
 
 export default async function StandaloneForm({ params }) {

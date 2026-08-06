@@ -31,7 +31,7 @@ function Group({ title, tests, open, onToggle }) {
   );
 }
 
-export default function SeoPanel({ doc, seo, onChange, siteUrl = "mindovermatterpodcast.com" }) {
+export default function SeoPanel({ doc, seo, onChange, siteUrl = "mindovermatterpodcasts.com" }) {
   const [open, setOpen] = useState("basic");
   const analysis = useMemo(
     () => analyzeSeo({ title: doc.title, slug: doc.slug, content: doc.contentHtml, excerpt: doc.excerpt, seo }),

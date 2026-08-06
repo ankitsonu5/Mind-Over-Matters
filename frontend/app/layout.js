@@ -31,6 +31,7 @@ export const metadata = {
     title: "Mind Over Matter | Official Podcast by Ashwin Gane",
     description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
   },
+  alternates: { canonical: SITE_URL },
 };
 
 export default function RootLayout({ children }) {
