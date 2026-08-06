@@ -40,7 +40,7 @@
 .heroImg img{ display:block; width:1366px; max-width:100%; height:768px; object-fit:cover; object-position:left center; margin:0; }
 
 /* hide main nav logo on blog pages */
-:global(nav .logo){ display:none; }
+.post :global(nav .logo){ display:none; }
 .heroImg figcaption{ position:absolute; left:16px; bottom:14px;
   font-family:"Montserrat",sans-serif; font-size:10px; letter-spacing:.2em;
   text-transform:uppercase; color:rgba(242,238,227,.75);

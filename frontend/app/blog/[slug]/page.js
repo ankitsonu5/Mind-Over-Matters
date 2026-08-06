@@ -29,13 +29,13 @@ export async function generateMetadata({ params }) {
       publishedTime: p.rawDate,
       authors: ["Ashwin Gane"],
       tags: p.tags,
-      images: p.image ? [{ url: p.image, alt: p.titlePlain }] : [],
+      images: p.image ? [{ url: p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`, alt: p.titlePlain }] : [],
     },
     twitter: {
       card: "summary_large_image",
       title: seoTitle,
       description: seoDesc,
-      images: p.image ? [p.image] : [],
+      images: p.image ? [p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`] : [],
     },
   };
 }

@@ -5,18 +5,19 @@ import Footer from "@/components/Footer";
 import Aos from "@/components/Aos";
 import PluginInjector from "@/components/PluginInjector";
 import FormRuntime from "@/components/FormRuntime";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata = {
-  metadataBase: new URL("https://mindovermatterpodcasts.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Mind Over Matter | Official Podcast by Ashwin Gane",
     template: "%s | Mind Over Matter",
   },
   description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
   icons: {
-    icon: "https://mindovermatterpodcasts.com/images/logo.png",
-    shortcut: "https://mindovermatterpodcasts.com/images/logo.png",
-    apple: "https://mindovermatterpodcasts.com/images/logo.png",
+    icon: `${SITE_URL}/images/logo.png`,
+    shortcut: `${SITE_URL}/images/logo.png`,
+    apple: `${SITE_URL}/images/logo.png`,
   },
   openGraph: {
     siteName: "Mind Over Matter",
@@ -36,9 +37,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="https://mindovermatterpodcasts.com/images/logo.png" type="image/png" />
-        <link rel="shortcut icon" href="https://mindovermatterpodcasts.com/images/logo.png" />
-        <link rel="apple-touch-icon" href="https://mindovermatterpodcasts.com/images/logo.png" />
+        <link rel="icon" href={`${SITE_URL}/images/logo.png`} type="image/png" />
+        <link rel="shortcut icon" href={`${SITE_URL}/images/logo.png`} />
+        <link rel="apple-touch-icon" href={`${SITE_URL}/images/logo.png`} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Sora:wght@300;400;500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
