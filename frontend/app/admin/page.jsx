@@ -9,9 +9,17 @@ export default function Dashboard() {
   const [d, setD] = useState({});
 
   useEffect(() => {
-    apiFetch("/api/admin/me").then((r) => r.json()).then(setMe).catch(() => {});
+    /* Guard on r.ok: a 401 still returns JSON ({error:"Unauthorized"}), and
+       storing that as `me` renders "Welcome, undefined". */
+    apiFetch("/api/admin/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setMe)
+      .catch(() => {});
     const load = (key, url) =>
-      apiFetch(url).then((r) => (r.ok ? r.json() : [])).then((v) => setD((x) => ({ ...x, [key]: v }))).catch(() => {});
+      apiFetch(url)
+        .then((r) => (r.ok ? r.json() : []))
+        .then((v) => setD((x) => ({ ...x, [key]: v })))
+        .catch(() => {});
     load("posts", "/api/admin/posts");
     load("episodes", "/api/admin/episodes");
     load("pages", "/api/admin/pages");
@@ -25,12 +33,42 @@ export default function Dashboard() {
   const n = (k) => (Array.isArray(d[k]) ? d[k].length : "…");
   const cards = [
     { k: "posts", label: "Posts", href: "/admin/posts", show: true },
-    { k: "episodes", label: "Episodes", href: "/admin/episodes", show: role !== "author" },
-    { k: "pages", label: "Pages", href: "/admin/pages", show: role !== "author" },
-    { k: "forms", label: "Forms", href: "/admin/forms", show: role !== "author" },
-    { k: "subs", label: "Submissions", href: "/admin/submissions", show: role !== "author" },
-    { k: "users", label: "Users", href: "/admin/users", show: role === "admin" },
-    { k: "plugins", label: "Plugins", href: "/admin/plugins", show: role === "admin" },
+    {
+      k: "episodes",
+      label: "Episodes",
+      href: "/admin/episodes",
+      show: role !== "author",
+    },
+    {
+      k: "pages",
+      label: "Pages",
+      href: "/admin/pages",
+      show: role !== "author",
+    },
+    {
+      k: "forms",
+      label: "Forms",
+      href: "/admin/forms",
+      show: role !== "author",
+    },
+    {
+      k: "subs",
+      label: "Submissions",
+      href: "/admin/submissions",
+      show: role !== "author",
+    },
+    {
+      k: "users",
+      label: "Users",
+      href: "/admin/users",
+      show: role === "admin",
+    },
+    {
+      k: "plugins",
+      label: "Plugins",
+      href: "/admin/plugins",
+      show: role === "admin",
+    },
   ].filter((c) => c.show);
 
   return (
@@ -38,7 +76,11 @@ export default function Dashboard() {
       <Head
         title={`Welcome${me ? ", " + (me.name || me.username) : ""}`}
         eyebrow="Dashboard · At a Glance"
-        action={<Link href="/admin/posts/new" className="btn btn-p">+ New Post</Link>}
+        action={
+          <Link href="/admin/posts/new" className="btn btn-p">
+            + New Post
+          </Link>
+        }
       />
       <div className="dash-grid">
         {cards.map((c) => (
@@ -56,15 +98,35 @@ export default function Dashboard() {
             <Link href="/admin/posts">View all →</Link>
           </div>
           {(d.posts || []).slice(0, 5).map((p) => (
-            <Link key={p.id} href={`/admin/posts/${p.id}`} className="dash-row" style={{ display: "flex", textDecoration: "none", color: "inherit" }}>
+            <Link
+              key={p.id}
+              href={`/admin/posts/${p.id}`}
+              className="dash-row"
+              style={{
+                display: "flex",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
               <span>
-                <span className="t-title" style={{ color: "#fff", fontWeight: 600 }}>{p.title}</span>
-                <span className="t-sub" style={{ display: "block" }}>{fmtDate(p.updatedAt)} · {p.authorName}</span>
+                <span
+                  className="t-title"
+                  style={{ color: "#fff", fontWeight: 600 }}
+                >
+                  {p.title}
+                </span>
+                <span className="t-sub" style={{ display: "block" }}>
+                  {fmtDate(p.updatedAt)} · {p.authorName}
+                </span>
               </span>
               <Status status={p.status} />
             </Link>
           ))}
-          {d.posts?.length === 0 && <div className="box-b muted">No posts yet — write your first one!</div>}
+          {d.posts?.length === 0 && (
+            <div className="box-b muted">
+              No posts yet — write your first one!
+            </div>
+          )}
         </div>
 
         {role !== "author" && (
@@ -77,14 +139,31 @@ export default function Dashboard() {
               <div key={s.id} className="dash-row">
                 <span>
                   <span style={{ color: "#fff", fontWeight: 600 }}>
-                    {!s.read && <span style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: "#61dafb", marginRight: 7 }} />}
+                    {!s.read && (
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: 7,
+                          height: 7,
+                          borderRadius: "50%",
+                          background: "#61dafb",
+                          marginRight: 7,
+                        }}
+                      />
+                    )}
                     {s.data?.name || s.data?.email || "Submission"}
                   </span>
-                  <span className="t-sub" style={{ display: "block" }}>{s.formName} · {fmtDate(s.createdAt)}</span>
+                  <span className="t-sub" style={{ display: "block" }}>
+                    {s.formName} · {fmtDate(s.createdAt)}
+                  </span>
                 </span>
               </div>
             ))}
-            {d.subs?.length === 0 && <div className="box-b muted">Form submissions will appear here.</div>}
+            {d.subs?.length === 0 && (
+              <div className="box-b muted">
+                Form submissions will appear here.
+              </div>
+            )}
           </div>
         )}
       </div>
