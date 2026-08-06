@@ -75,7 +75,7 @@
   border-radius:14px; background:var(--card); border:1px solid rgba(224,199,148,.14); transition:.25s; }
 .platCard:hover{ transform:translateY(-4px); border-color:rgba(224,199,148,.45); background:#0c1426; }
 .platCard img{ width:92px; height:92px; object-fit:contain; }
-.platCard .pn{ font-family:"Montserrat",sans-serif; font-size:12px; letter-spacing:.1em; color:#dfeafb; }
+.platCard .pn{ font-family:"Montserrat",sans-serif; font-size:14px; letter-spacing:.1em; color:#dfeafb; }
 .platCard .pb{ font-family:"Lora",serif; font-size:13px; color:var(--steel); line-height:1.6; }
 
 /* single platform detail */

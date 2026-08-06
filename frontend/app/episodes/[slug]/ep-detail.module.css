@@ -86,7 +86,7 @@
   border:1px solid rgba(224,199,148,.14); border-radius:10px;
   transition:border-color .2s, background .2s; }
 .plat:hover{ border-color:rgba(214,180,117,.5); background:rgba(214,180,117,.07); }
-.plat img{ width:22px; height:22px; object-fit:contain; flex:none; }
+.plat img{ width:36px; height:36px; object-fit:contain; flex:none; }
 .plat span{ font-family:"Montserrat",sans-serif; font-size:10px;
   letter-spacing:.04em; color:#dfeafb; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .allPlat{ display:inline-block; margin-top:14px; font-family:"Montserrat",sans-serif;
