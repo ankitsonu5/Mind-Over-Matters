@@ -14,13 +14,13 @@ export default function BlogList({ posts = [] }) {
     [posts, featured]
   );
 
-  // Build the filter list: All + every distinct tag, with counts.
+  // Build the filter list: All + every distinct tag.
   const filters = useMemo(() => {
     const map = new Map();
-    rest.forEach((p) => (p.tags || []).forEach((t) => map.set(t, (map.get(t) || 0) + 1)));
+    rest.forEach((p) => (p.tags || []).forEach((t) => map.set(t, true)));
     return [
-      { id: "all", label: "All", count: rest.length },
-      ...[...map.entries()].map(([t, count]) => ({ id: t, label: t, count })),
+      { id: "all", label: "All" },
+      ...[...map.keys()].map((t) => ({ id: t, label: t })),
     ];
   }, [rest]);
 
@@ -66,13 +66,6 @@ export default function BlogList({ posts = [] }) {
             <span className={s.featKicker}>Latest · {featured.category}</span>
             <h2 className={s.featTitle}>{featured.titlePlain}</h2>
             <p className={s.featExcerpt}>{featured.excerpt}</p>
-            {featured.tags?.length > 0 && (
-              <div className={s.featTags}>
-                {featured.tags.map((t) => (
-                  <span key={t} className={s.chip}>{t}</span>
-                ))}
-              </div>
-            )}
             <div className={s.featMeta}>
               <span>{featured.date}</span>
               <span className={s.read}>Read the entry →</span>
@@ -91,7 +84,7 @@ export default function BlogList({ posts = [] }) {
             className={`${s.fbtn} ${filter === f.id ? s.fbtnOn : ""}`}
             onClick={() => setFilter(f.id)}
           >
-            {f.label} <span className={s.fcount}>{f.count}</span>
+            {f.label}
           </button>
         ))}
       </div>
@@ -108,13 +101,6 @@ export default function BlogList({ posts = [] }) {
               <div className={s.cat}>{p.category}</div>
               <h3 className={s.title}>{p.titlePlain}</h3>
               <p className={s.excerpt}>{p.excerpt}</p>
-              {p.tags?.length > 0 && (
-                <div className={s.cardTags}>
-                  {p.tags.map((t) => (
-                    <span key={t} className={s.chipSm}>{t}</span>
-                  ))}
-                </div>
-              )}
               <div className={s.meta}><span>{p.date}</span><span className={s.read}>Read →</span></div>
             </div>
           </Link>

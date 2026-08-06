@@ -13,6 +13,9 @@ body{ background:transparent; color:var(--ink); overflow-x:hidden;
   font-family:"Montserrat",system-ui,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
 .mono{ font-family:"Montserrat",sans-serif; }
 
+/* remove browser default link underlines so design-controlled borders show */
+a { text-decoration: none !important; }
+
 /* ---- fixed cosmic background (single scene): the supplied artwork with the
        planet gently in motion, a soft pulsing glow on the planet, and the
        outward-drifting particle field on top ---- */
@@ -499,7 +502,7 @@ h1.mom-reveal-word.fade-out{ opacity:0; }
   padding-top:26px; border-top:1px solid rgba(224,199,148,.14); }
 .prose h3{ font-family:"Cinzel",serif; font-weight:700; color:#fff;
   font-size:clamp(21px,2.6vw,25px); line-height:1.25; margin-top:36px; }
-.prose a{ color:var(--cyan); text-decoration:none;
+.prose a{ color:var(--gold); text-decoration:none;
   background-image:linear-gradient(currentColor,currentColor);
   background-size:100% 1px; background-position:0 100%; background-repeat:no-repeat;
   transition:filter .2s; }

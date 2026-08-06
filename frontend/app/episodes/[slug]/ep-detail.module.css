@@ -75,14 +75,18 @@
   text-transform:uppercase; color:rgba(224,199,148,.65); display:block; margin-top:5px; }
 .guestCard p,.guestCta p{ font-family:"Lora",serif; font-size:14px; line-height:1.8;
   color:#aebadb; margin-top:12px; }
-.guestCard a,.guestCta a,.allPlat{ color:var(--cyan); border-bottom:1px solid rgba(214,180,117,.35); }
+.guestCard a,.guestCta a,.allPlat{
+  color:var(--gold) !important;
+  text-decoration:none !important;
+  border-bottom:1px solid rgba(214,180,117,.35);
+}
 .guestCard a:hover,.guestCta a:hover{ filter:brightness(1.2); }
 .platList{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .plat{ display:flex; align-items:center; gap:9px; padding:9px 10px;
   border:1px solid rgba(224,199,148,.14); border-radius:10px;
   transition:border-color .2s, background .2s; }
 .plat:hover{ border-color:rgba(214,180,117,.5); background:rgba(214,180,117,.07); }
-.plat img{ width:22px; height:22px; object-fit:contain; flex:none; }
+.plat img{ width:36px; height:36px; object-fit:contain; flex:none; }
 .plat span{ font-family:"Montserrat",sans-serif; font-size:10px;
   letter-spacing:.04em; color:#dfeafb; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .allPlat{ display:inline-block; margin-top:14px; font-family:"Montserrat",sans-serif;

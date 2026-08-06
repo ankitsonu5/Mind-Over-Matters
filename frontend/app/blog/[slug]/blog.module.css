@@ -37,7 +37,10 @@
 .heroImg{ position:relative; border-radius:18px; overflow:hidden; margin:34px 0 0;
   background:#06080f; border:1px solid rgba(224,199,148,.18);
   box-shadow:0 50px 110px -40px rgba(0,0,0,.9); }
-.heroImg img{ display:block; width:100%; max-height:560px; object-fit:cover; }
+.heroImg img{ display:block; width:1366px; max-width:100%; height:768px; object-fit:cover; object-position:left center; margin:0; }
+
+/* hide main nav logo on blog pages */
+:global(nav .logo){ display:none; }
 .heroImg figcaption{ position:absolute; left:16px; bottom:14px;
   font-family:"Montserrat",sans-serif; font-size:10px; letter-spacing:.2em;
   text-transform:uppercase; color:rgba(242,238,227,.75);
@@ -54,8 +57,8 @@
 .railLabel{ display:block; font-family:"Montserrat",sans-serif; font-size:10px;
   letter-spacing:.26em; text-transform:uppercase; color:var(--cyan); margin-bottom:10px; }
 .railBox p{ font-family:"Lora",serif; font-size:14px; line-height:1.8; color:#aebadb; }
-.railBox a{ color:var(--cyan); border-bottom:1px solid rgba(214,180,117,.35); }
-.railBox a:hover{ filter:brightness(1.2); }
+.railBox a{ color:var(--gold) !important; text-decoration:none !important; border-bottom:1px solid rgba(214,180,117,.35); }
+.railBox a:hover{ filter:brightness(1.12); }
 
 /* related episode card */
 .epCard{ display:flex; flex-direction:column; gap:8px; padding:20px;

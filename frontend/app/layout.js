@@ -7,24 +7,38 @@ import PluginInjector from "@/components/PluginInjector";
 import FormRuntime from "@/components/FormRuntime";
 
 export const metadata = {
-  metadataBase: new URL("https://mindovermatterpodcast.com"),
+  metadataBase: new URL("https://mindovermatterpodcasts.com"),
   title: {
-    default: "MIND OVER MATTER — See Past The Surface",
-    template: "%s — Mind Over Matter",
+    default: "Mind Over Matter | Official Podcast by Ashwin Gane",
+    template: "%s | Mind Over Matter",
   },
-  description: "A 3D audio-visual podcast journey into the mind. Hosted by Ashwin Gane.",
+  description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
+  icons: {
+    icon: "https://mindovermatterpodcasts.com/images/logo.png",
+    shortcut: "https://mindovermatterpodcasts.com/images/logo.png",
+    apple: "https://mindovermatterpodcasts.com/images/logo.png",
+  },
   openGraph: {
     siteName: "Mind Over Matter",
+    title: "Mind Over Matter | Official Podcast by Ashwin Gane",
+    description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
     type: "website",
     locale: "en_US",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mind Over Matter | Official Podcast by Ashwin Gane",
+    description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="https://mindovermatterpodcasts.com/images/logo.png" type="image/png" />
+        <link rel="shortcut icon" href="https://mindovermatterpodcasts.com/images/logo.png" />
+        <link rel="apple-touch-icon" href="https://mindovermatterpodcasts.com/images/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Sora:wght@300;400;500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />

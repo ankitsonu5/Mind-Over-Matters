@@ -72,7 +72,7 @@ export const footer = {
   // name must match an icon key in components/Footer.js; href is the link
   socials: [
     { name: "facebook", href: "https://www.facebook.com/mindovermatterr.show" },
-    { name: "x", href: "https://x.com" },
+    { name: "x", href: "https://x.com/MOMPodcastShow" },
     { name: "youtube", href: "https://www.youtube.com/@MindOverMatter-w8w" },
     { name: "instagram", href: "https://www.instagram.com/mindovermatter.show/" },
     { name: "tiktok", href: "https://tiktok.com" },

@@ -1,5 +1,5 @@
 .wrap{ padding:120px clamp(18px,5vw,40px) 90px; position:relative; z-index:5; max-width:1180px; margin:0 auto; }
-.back{ display:inline-block; font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); opacity:.35; transition:opacity .25s, color .25s, transform .25s; }
+.back{ display:block; font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); opacity:.35; transition:opacity .25s, color .25s, transform .25s; margin-bottom:10px; }
 .back:hover{ opacity:1; color:var(--cyan); transform:translateX(-3px); }
 .eyebrow{ font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--cyan); display:inline-block; margin:22px 0 10px; }
 .h1{ font-family:"Cinzel",serif; font-weight:700; font-size:clamp(42px,7vw,76px); line-height:.98; }
