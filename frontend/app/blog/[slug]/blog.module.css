@@ -54,8 +54,8 @@
 .railLabel{ display:block; font-family:"Montserrat",sans-serif; font-size:10px;
   letter-spacing:.26em; text-transform:uppercase; color:var(--cyan); margin-bottom:10px; }
 .railBox p{ font-family:"Lora",serif; font-size:14px; line-height:1.8; color:#aebadb; }
-.railBox a{ color:var(--cyan); border-bottom:1px solid rgba(214,180,117,.35); }
-.railBox a:hover{ filter:brightness(1.2); }
+.railBox a{ color:var(--gold) !important; text-decoration:none !important; border-bottom:1px solid rgba(214,180,117,.35); }
+.railBox a:hover{ filter:brightness(1.12); }
 
 /* related episode card */
 .epCard{ display:flex; flex-direction:column; gap:8px; padding:20px;

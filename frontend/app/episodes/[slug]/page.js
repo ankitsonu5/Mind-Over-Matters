@@ -155,10 +155,6 @@ export default async function EpisodeDetail({ params }) {
               <span className={s.railLabel}>The Guest</span>
               <strong>{ep.guest}</strong>
               {ep.role && <span className={s.guestRole}>{ep.role}</span>}
-              <p>
-                In conversation with <Link href="/about">Ashwin Gane</Link> — raw,
-                unfiltered, and built to make you see past the surface.
-              </p>
             </div>
           )}
           <div className={s.platBox}>
@@ -175,7 +171,6 @@ export default async function EpisodeDetail({ params }) {
           </div>
           <div className={s.guestCta}>
             <span className={s.railLabel}>Your Turn</span>
-            <p>Got a story worth a mic? <Link href="/guest">Apply to be a guest</Link>.</p>
           </div>
         </aside>
       </div>

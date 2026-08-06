@@ -1,4 +1,4 @@
-.wrap{ padding:120px clamp(18px,5vw,40px) 90px; position:relative; z-index:5; max-width:1200px; margin:0 auto; }
+.wrap{ padding:84px clamp(18px,4vw,40px) 70px; position:relative; z-index:5; max-width:1320px; margin:0 auto; }
 .back{ display:inline-block; font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); opacity:.35; transition:opacity .25s, color .25s, transform .25s; }
 .back:hover{ opacity:1; color:var(--cyan); transform:translateX(-3px); }
 .eyebrow{ font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--cyan); display:inline-block; margin:22px 0 10px; }
@@ -7,7 +7,7 @@
 .sub{ color:var(--muted); font-family:"Lora",serif; font-style:italic; font-size:18px; margin-top:10px; max-width:560px; }
 
 /* ---------- Featured episode hero ---------- */
-.featured{ position:relative; display:block; margin-top:42px; min-height:clamp(300px,42vw,440px);
+.featured{ position:relative; display:block; margin-top:24px; min-height:clamp(300px,42vw,440px);
   border-radius:20px; overflow:hidden; text-decoration:none; color:inherit;
   border:1px solid rgba(224,199,148,.18); box-shadow:0 50px 110px -50px rgba(0,0,0,.9); }
 .featBg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
@@ -28,14 +28,12 @@
 .featured:hover .featBtn{ transform:translateY(-2px); box-shadow:0 14px 34px -10px rgba(214,180,117,.6); }
 
 /* ---------- Filter bar ---------- */
-.filters{ display:flex; flex-wrap:wrap; gap:10px; margin:42px 0 2px; }
+.filters{ display:flex; flex-wrap:wrap; gap:10px; margin:32px 0 2px; }
 .fbtn{ cursor:pointer; font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
   color:var(--muted); background:rgba(224,199,148,.04); border:1px solid rgba(224,199,148,.16);
   padding:10px 18px; border-radius:30px; transition:color .25s, border-color .25s, background .25s; }
 .fbtn:hover{ color:var(--ink); border-color:rgba(224,199,148,.4); }
 .fbtnOn{ color:#241A08; background:var(--cyan); border-color:var(--cyan); }
-.fcount{ opacity:.6; margin-left:4px; }
-.fbtnOn .fcount{ opacity:.8; }
 .empty{ font-family:"Lora",serif; font-style:italic; color:var(--muted); margin-top:40px; }
 
 .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(20px,2.4vw,34px); margin-top:34px; perspective:1600px; }
@@ -55,13 +53,11 @@
 .media img{ width:100%; height:100%; object-fit:cover; display:block; }
 .num{ position:absolute; top:14px; left:16px; font-family:"Cormorant Garamond",serif; font-weight:700;
   font-size:40px; line-height:1; color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.7); opacity:.92; }
-.numPlay{ font-size:26px; opacity:.85; }
 .live{ position:absolute; top:18px; right:16px; font-family:"Montserrat",sans-serif; font-size:10px;
   letter-spacing:.16em; text-transform:uppercase; color:#241A08; background:var(--cyan); padding:5px 10px; border-radius:20px; }
 .badge{ position:absolute; top:18px; right:16px; font-family:"Montserrat",sans-serif; font-size:10px;
   letter-spacing:.16em; text-transform:uppercase; padding:5px 10px; border-radius:20px; }
 .badgeLive{ color:#241A08; background:var(--cyan); }
-.badgeTrailer{ color:#fff; background:rgba(255,77,166,.92); }
 .body{ padding:20px 22px 24px; }
 .cat{ font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--cyan); }
 .title{ font-family:"Cormorant Garamond",serif; font-weight:700; font-size:clamp(22px,2.2vw,30px); line-height:1.04; margin:8px 0 8px; color:#fff; }

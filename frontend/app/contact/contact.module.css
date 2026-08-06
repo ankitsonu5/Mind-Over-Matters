@@ -25,14 +25,14 @@
 .block{ border-left:2px solid rgba(224,199,148,.35); padding-left:18px; }
 .blockLabel{ display:block; font-family:"Montserrat",sans-serif; font-size:10px;
   letter-spacing:.26em; text-transform:uppercase; color:var(--cyan); margin-bottom:7px; }
-.block a{ font-family:"Lora",serif; font-size:16px; color:#F2EEE3;
-  border-bottom:1px solid rgba(214,180,117,.35); transition:color .2s; }
-.block a:hover{ color:var(--cyan); }
+.block a{ font-family:"Lora",serif; font-size:16px; color:var(--gold) !important;
+  text-decoration:none !important; border-bottom:1px solid rgba(214,180,117,.35); transition:color .2s; }
+.block a:hover{ color:var(--gold-bright); }
 .block address{ font-style:normal; font-family:"Lora",serif; font-size:15px;
   line-height:1.8; color:#cfd9ef; }
 .guestNote{ margin-top:32px; font-family:"Lora",serif; font-style:italic;
   font-size:14px; color:var(--muted); }
-.guestNote a{ color:var(--cyan); border-bottom:1px solid rgba(214,180,117,.35); }
+.guestNote a{ color:var(--gold) !important; text-decoration:none !important; border-bottom:1px solid rgba(214,180,117,.35); }
 
 /* ============ FORM CARD ============ */
 .formCard{ position:relative; background:rgba(7,12,26,.78); border:1px solid rgba(224,199,148,.16);
