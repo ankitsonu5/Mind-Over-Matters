@@ -1,5 +1,5 @@
 import ContactPageClient from "@/components/ContactPageClient";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, OG_IMAGE, PODCAST_NAME } from "@/lib/seo";
 import { footer } from "@/data/site";
 
 export const metadata = {
@@ -8,11 +8,20 @@ export const metadata = {
     "Get in touch with the Mind Over Matter team — general inquiries, guest applications, collaborations and press. Reach out and become part of the conversation beyond the surface.",
   alternates: { canonical: `${SITE_URL}/contact` },
   openGraph: {
-    title: `Contact Us — ${SITE_NAME}`,
+    title: `Contact Us | ${PODCAST_NAME}`,
     description:
       "Get in touch with the Mind Over Matter team — inquiries, collaborations and press.",
     url: `${SITE_URL}/contact`,
-    images: ["/images/host.jpg"],
+    type: "website",
+    siteName: PODCAST_NAME,
+    images: [{ url: OG_IMAGE, width: 1300, height: 732, alt: "Contact Mind Over Matter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Contact Us | ${PODCAST_NAME}`,
+    description:
+      "Get in touch with the Mind Over Matter team — inquiries, collaborations and press.",
+    images: [OG_IMAGE],
   },
 };
 

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { uploadMedia } from "./uploadMedia";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 export default function MediaPicker({ open, onClose, onSelect, withAlt = true }) {
   const [items, setItems] = useState(null);
   const [selected, setSelected] = useState(null);
@@ -51,7 +52,7 @@ export default function MediaPicker({ open, onClose, onSelect, withAlt = true })
       <div className="mp-modal">
         <div className="mp-head">
           <span>Select or Upload Media</span>
-          <button className="mp-x" onClick={onClose}>✕</button>
+          <button className="mp-x" onClick={onClose} aria-label="Close"><Icon name="close" title="Close" /></button>
         </div>
 
         {err && <div className="al al-err" style={{ margin: "12px 16px 0" }}>{err}</div>}
@@ -61,7 +62,7 @@ export default function MediaPicker({ open, onClose, onSelect, withAlt = true })
             <input ref={fileRef} type="file" accept="image/*" multiple hidden
               onChange={(e) => { if (e.target.files?.length) onFiles([...e.target.files]); e.target.value = ""; }} />
             <button className="mp-upload" disabled={busy} onClick={() => fileRef.current?.click()}>
-              {busy ? "Uploading…" : "⬆ Upload files"}
+              {busy ? "Uploading…" : <><Icon name="upload" /> Upload files</>}
             </button>
             {items === null && <div className="muted" style={{ padding: 20 }}>Loading library…</div>}
             {items?.length === 0 && <div className="muted" style={{ padding: 20 }}>Library is empty — upload your first image.</div>}
@@ -75,7 +76,7 @@ export default function MediaPicker({ open, onClose, onSelect, withAlt = true })
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={m.url} alt={m.filename} loading="lazy" />
-                  {selected === m.url && <span className="mp-check">✓</span>}
+                  {selected === m.url && <span className="mp-check"><Icon name="check" /></span>}
                 </button>
               ))}
             </div>

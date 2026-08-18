@@ -10,7 +10,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }) {
   const p = getPlatform(params.slug);
   const url = `${SITE_URL}/listen/${params.slug}`;
-  return { title: p ? `Listen on ${p.name} — Mind Over Matter` : "Listen", alternates: { canonical: url } };
+  return { title: p ? `Listen on ${p.name}` : "Listen", alternates: { canonical: url } };
 }
 
 export default function PlatformDetail({ params }) {

@@ -3,7 +3,7 @@ import s from "../detail.module.css";
 import { about } from "@/data/site";
 import { SITE_URL } from "@/lib/seo";
 
-export const metadata = { title: "About — Mind Over Matter", alternates: { canonical: `${SITE_URL}/about` } };
+export const metadata = { title: "About", alternates: { canonical: `${SITE_URL}/about` } };
 
 export default function AboutPage() {
   return (

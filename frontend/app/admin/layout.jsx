@@ -6,29 +6,30 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { apiFetch, clearToken } from "@/lib/api";
+import Icon from "@/components/Icon";
 
 const MENU = [
   {
     href: "/admin",
     label: "Dashboard",
-    ic: "◆",
+    ic: "dashboard",
     exact: true,
     section: "dashboard",
   },
-  { href: "/admin/posts", label: "Posts", ic: "✎", section: "posts" },
-  { href: "/admin/episodes", label: "Episodes", ic: "▶", section: "episodes" },
-  { href: "/admin/media", label: "Media", ic: "🖼", section: "media" },
-  { href: "/admin/pages", label: "Pages", ic: "▤", section: "pages" },
-  { href: "/admin/forms", label: "Forms", ic: "▦", section: "forms" },
+  { href: "/admin/posts", label: "Posts", ic: "posts", section: "posts" },
+  { href: "/admin/episodes", label: "Episodes", ic: "episodes", section: "episodes" },
+  { href: "/admin/media", label: "Media", ic: "media", section: "media" },
+  { href: "/admin/pages", label: "Pages", ic: "pages", section: "pages" },
+  { href: "/admin/forms", label: "Forms", ic: "forms", section: "forms" },
   {
     href: "/admin/submissions",
     label: "Submissions",
-    ic: "✉",
+    ic: "submissions",
     section: "submissions",
   },
-  { href: "/admin/users", label: "Users", ic: "👤", section: "users" },
-  { href: "/admin/plugins", label: "Plugins", ic: "⚙", section: "plugins" },
-  { href: "/admin/settings", label: "Settings", ic: "☰", section: "settings" },
+  { href: "/admin/users", label: "Users", ic: "users", section: "users" },
+  { href: "/admin/plugins", label: "Plugins", ic: "plugins", section: "plugins" },
+  { href: "/admin/settings", label: "Settings", ic: "settings", section: "settings" },
 ];
 
 const ROLE_SECTIONS = {
@@ -132,7 +133,7 @@ export default function AdminLayout({ children }) {
               : pathname.startsWith(m.href);
             return (
               <Link key={m.href} href={m.href} className={on ? "on" : ""}>
-                <span className="ic">{m.ic}</span>
+                <span className="ic"><Icon name={m.ic} /></span>
                 <span className="lbl">{m.label}</span>
               </Link>
             );
@@ -145,10 +146,10 @@ export default function AdminLayout({ children }) {
             </div>
           )}
           <a href="/" target="_blank" rel="noreferrer">
-            <span className="ic">↗</span> <span className="lbl">View Site</span>
+            <span className="ic"><Icon name="external" /></span> <span className="lbl">View Site</span>
           </a>
           <button onClick={logout}>
-            <span className="ic">⏻</span> <span className="lbl">Log Out</span>
+            <span className="ic"><Icon name="logout" /></span> <span className="lbl">Log Out</span>
           </button>
         </div>
       </aside>

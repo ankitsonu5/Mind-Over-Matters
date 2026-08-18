@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { Alert, Head, slugifyClient } from "@/components/wpadmin/ui";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 const EMPTY = { name: "", description: "", version: "1.0.0", author: "", kind: "js", code: "", active: true };
 
 const KIND_HINT = {
@@ -89,7 +90,7 @@ export default function PluginsAdmin() {
       <Head title="Plugins" eyebrow={`${active} Active · ${(items || []).length} Installed`}
         action={
           <div style={{ display: "flex", gap: 9 }}>
-            <button className="btn btn-g" onClick={() => fileRef.current?.click()}>⬆ Upload Plugin</button>
+            <button className="btn btn-g" onClick={() => fileRef.current?.click()}><Icon name="upload" /> Upload Plugin</button>
             <button className="btn btn-p" onClick={() => { setForm({ mode: "new", data: { ...EMPTY } }); setErr(""); setOk(""); }}>+ Add New Plugin</button>
           </div>
         } />

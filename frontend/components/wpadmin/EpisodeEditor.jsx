@@ -8,6 +8,7 @@ import MediaPicker from "@/components/wpadmin/MediaPicker";
 import { Alert, Head, slugifyClient } from "@/components/wpadmin/ui";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 export default function EpisodeEditor({ id }) {
   const router = useRouter();
   const isNew = !id;
@@ -73,7 +74,7 @@ export default function EpisodeEditor({ id }) {
         action={
           <div style={{ display: "flex", gap: 9 }}>
             {doc.status === "published" && !isNew && (
-              <a className="btn btn-g" href={`/episodes/${effectiveSlug}`} target="_blank" rel="noreferrer">👁 View</a>
+              <a className="btn btn-g" href={`/episodes/${effectiveSlug}`} target="_blank" rel="noreferrer"><Icon name="view" /> View</a>
             )}
             <button className="btn btn-g" disabled={busy} onClick={() => save("draft")}>Save Draft</button>
             <button className="btn btn-p" disabled={busy} onClick={() => save("published")}>{busy ? "Saving…" : doc.status === "published" ? "Update" : "Publish"}</button>
@@ -122,7 +123,7 @@ export default function EpisodeEditor({ id }) {
             <div className="box-b">
               <input ref={coverRef} type="file" accept="image/*" hidden onChange={onCoverFile} />
               <button className="btn btn-p btn-sm" style={{ width: "100%", justifyContent: "center", marginBottom: 10 }} onClick={() => setPickerOpen(true)}>
-                🖼 Choose from Library / Upload
+                <Icon name="media" /> Choose from Library / Upload
               </button>
               <MediaPicker open={pickerOpen} onClose={() => setPickerOpen(false)} withAlt={false}
                 onSelect={({ url }) => set("image", url)} />

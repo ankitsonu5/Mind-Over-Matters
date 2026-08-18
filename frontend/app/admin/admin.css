@@ -113,6 +113,11 @@
 .wpadm-nav a .ic {
   width: 17px;
   text-align: center;
+  /* SVG icons: centre them in the same 17px gutter the glyphs used */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
   color: #61dafb;
   opacity: 0.85;
 }

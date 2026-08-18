@@ -8,6 +8,7 @@ import MediaPicker from "@/components/wpadmin/MediaPicker";
 import { Alert, Head, slugifyClient } from "@/components/wpadmin/ui";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 export default function PageEditor({ id }) {
   const router = useRouter();
   const isNew = !id;
@@ -69,7 +70,7 @@ export default function PageEditor({ id }) {
         action={
           <div style={{ display: "flex", gap: 9 }}>
             {doc.status === "published" && !isNew && (
-              <a className="btn btn-g" href={`/p/${effectiveSlug}`} target="_blank" rel="noreferrer">👁 View</a>
+              <a className="btn btn-g" href={`/p/${effectiveSlug}`} target="_blank" rel="noreferrer"><Icon name="view" /> View</a>
             )}
             <button className="btn btn-g" disabled={busy} onClick={() => save("draft")}>Save Draft</button>
             <button className="btn btn-p" disabled={busy} onClick={() => save("published")}>{busy ? "Saving…" : doc.status === "published" ? "Update" : "Publish"}</button>
@@ -87,9 +88,9 @@ export default function PageEditor({ id }) {
           <label className="f-label">Hero image (optional)</label>
           <input ref={coverRef} type="file" accept="image/*" hidden onChange={onCoverFile} />
           <div style={{ display: "flex", gap: 9 }}>
-            <button className="btn btn-p btn-sm" onClick={() => setPickerOpen(true)}>🖼 Library</button>
+            <button className="btn btn-p btn-sm" onClick={() => setPickerOpen(true)}><Icon name="media" /> Library</button>
             <button className="btn btn-g btn-sm" disabled={coverBusy} onClick={() => coverRef.current?.click()}>
-              {coverBusy ? "Uploading…" : "⬆ Upload"}
+              {coverBusy ? "Uploading…" : <><Icon name="upload" /> Upload</>}
             </button>
             <MediaPicker open={pickerOpen} onClose={() => setPickerOpen(false)} withAlt={false}
               onSelect={({ url }) => set("coverImage", url)} />

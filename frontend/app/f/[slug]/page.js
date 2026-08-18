@@ -13,7 +13,7 @@ async function loadForm(slug) {
 export async function generateMetadata({ params }) {
   const form = await loadForm(params.slug);
   const url = `${SITE_URL}/f/${params.slug}`;
-  return { title: form ? `${form.name} — Mind Over Matter` : "Form", alternates: { canonical: url } };
+  return { title: form ? `${form.name}` : "Form", alternates: { canonical: url } };
 }
 
 export default async function StandaloneForm({ params }) {

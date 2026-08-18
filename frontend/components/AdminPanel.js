@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import s from "@/app/panel/panel.module.css";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 // internal keys Netlify mixes into submission data that aren't form fields
 const SKIP = new Set(["ip", "user_agent", "referrer", "bot-field", "form-name"]);
 
@@ -158,7 +159,7 @@ export default function AdminPanel() {
           </div>
           <div className={s.headActions}>
             <button className={s.btnGhost} onClick={() => load(key)} disabled={state === "loading"}>
-              {state === "loading" ? "Refreshing…" : "↻ Refresh"}
+              {state === "loading" ? "Refreshing…" : <><Icon name="refresh" /> Refresh</>}
             </button>
             <button className={s.btnGhost} onClick={() => { sessionStorage.removeItem("mom-admin-key"); setAuthed(false); }}>
               Log out
@@ -187,8 +188,8 @@ export default function AdminPanel() {
               <input className={s.search} placeholder="Search entries…" value={q}
                 onChange={(e) => setQ(e.target.value)} />
               <div className={s.barBtns}>
-                <button className={s.btn} onClick={exportCSV} disabled={!rows.length}>⬇ Export Sheet (CSV)</button>
-                <button className={s.btn} onClick={exportPDF} disabled={!rows.length}>⬇ Export PDF</button>
+                <button className={s.btn} onClick={exportCSV} disabled={!rows.length}><Icon name="download" /> Export Sheet (CSV)</button>
+                <button className={s.btn} onClick={exportPDF} disabled={!rows.length}><Icon name="download" /> Export PDF</button>
               </div>
             </div>
 

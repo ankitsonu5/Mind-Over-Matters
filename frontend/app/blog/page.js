@@ -3,7 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { SITE_URL } from "@/lib/seo";
 
 export const metadata = {
-  title: "Journal — Mind Over Matter",
+  title: "Journal",
   alternates: { canonical: `${SITE_URL}/blog` },
 };
 

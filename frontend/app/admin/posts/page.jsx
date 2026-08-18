@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Alert, Head, SeoBadge, Status, fmtDate } from "@/components/wpadmin/ui";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 export default function PostsList() {
   const router = useRouter();
   const [items, setItems] = useState(null);
@@ -56,7 +57,7 @@ export default function PostsList() {
         eyebrow="Content · Journal"
         action={
           <div style={{ display: "flex", gap: 9 }}>
-            <button className="btn btn-g" onClick={importSeeds}>⇩ Import Site Posts</button>
+            <button className="btn btn-g" onClick={importSeeds}><Icon name="import" /> Import Site Posts</button>
             <Link href="/admin/posts/new" className="btn btn-p">+ Add New Post</Link>
           </div>
         }
@@ -82,7 +83,7 @@ export default function PostsList() {
               <th>Category</th>
               <th>Status</th>
               <th>Date</th>
-              <th style={{ color: "#61dafb" }}>SEO Details ✎</th>
+              <th style={{ color: "#61dafb" }}>SEO Details <Icon name="edit" /></th>
               <th style={{ textAlign: "right" }}>Actions</th>
             </tr>
           </thead>
@@ -114,7 +115,7 @@ export default function PostsList() {
                       {(!p.seo?.schemaType || p.seo?.schemaType === "BlogPosting") ? "Article (BlogPosting)" : p.seo.schemaType}
                       {p.seo?.faqSchema ? ", FAQPage" : ""}
                     </div>
-                    <div><span className="k">Links:</span> 🔗 {p.seo?.links?.internal ?? 0} in · ↗ {p.seo?.links?.external ?? 0} out</div>
+                    <div><span className="k">Links:</span> <Icon name="link" /> {p.seo?.links?.internal ?? 0} in · <Icon name="external" /> {p.seo?.links?.external ?? 0} out</div>
                   </div>
                 </td>
                 <td>

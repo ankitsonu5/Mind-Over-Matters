@@ -16,7 +16,10 @@ export async function generateMetadata({ params }) {
   const seoTitle = p.seo?.title?.trim() || p.titlePlain;
   const seoDesc = p.seo?.description?.trim() || p.excerpt;
   return {
-    title: seoTitle,
+    /* absolute -> skips the root " | Mind Over Matter Podcast" template.
+       SEO titles are already up to 60 chars; the suffix would push them
+       past what Google shows and get truncated away anyway. */
+    title: { absolute: seoTitle },
     description: seoDesc,
     keywords: p.tags,
     authors: [{ name: "Ashwin Gane", url: `${SITE_URL}/about` }],

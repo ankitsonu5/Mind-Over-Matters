@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import { uploadMedia } from "./uploadMedia";
 import MediaPicker from "./MediaPicker";
+import Icon from "@/components/Icon";
 
 function ytEmbedHtml(url) {
   const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|shorts\/|embed\/))([^?&\s]+)/);
@@ -211,13 +212,13 @@ export default function RichEditor({ value, onChange, placeholder = "Start writi
     { ic: "¶", label: "Paragraph", run: () => cmd("formatBlock", "<p>") },
     { ic: "H2", label: "Heading 2", run: () => toggleBlock("h2") },
     { ic: "H3", label: "Heading 3", run: () => toggleBlock("h3") },
-    { ic: "🖼", label: "Image", run: () => openPicker() },
-    { ic: "▶", label: "YouTube", run: () => addVideo() },
-    { ic: "❝", label: "Quote", run: () => toggleBlock("blockquote") },
+    { icon: "media", label: "Image", run: () => openPicker() },
+    { icon: "play", label: "YouTube", run: () => addVideo() },
+    { icon: "quote", label: "Quote", run: () => toggleBlock("blockquote") },
     { ic: "•", label: "List", run: () => cmd("insertUnorderedList") },
     { ic: "1.", label: "Numbered", run: () => cmd("insertOrderedList") },
     { ic: "？", label: "FAQ Block", run: () => addFaq() },
-    { ic: "▦", label: "Form", run: () => { const slug = window.prompt("Form slug to embed:", "contact"); if (slug) ins(`<p>[form ${slug}]</p>`); } },
+    { icon: "forms", label: "Form", run: () => { const slug = window.prompt("Form slug to embed:", "contact"); if (slug) ins(`<p>[form ${slug}]</p>`); } },
     { ic: "—", label: "Separator", run: () => ins("<hr/><p><br/></p>") },
   ];
 
@@ -243,17 +244,17 @@ export default function RichEditor({ value, onChange, placeholder = "Start writi
         <button type="button" style={{ fontStyle: "italic" }} onClick={() => cmd("italic")}>I</button>
         <button type="button" style={{ textDecoration: "underline" }} onClick={() => cmd("underline")}>U</button>
         <span className="sep" />
-        <button type="button" onClick={() => toggleBlock("blockquote")}>❝ Quote</button>
+        <button type="button" onClick={() => toggleBlock("blockquote")}><Icon name="quote" /> Quote</button>
         <button type="button" onClick={() => cmd("insertUnorderedList")}>• List</button>
         <button type="button" onClick={() => cmd("insertOrderedList")}>1. List</button>
         <span className="sep" />
-        <button type="button" onClick={addLink}>🔗 Link</button>
-        <button type="button" onClick={openPicker}>🖼 Image</button>
-        <button type="button" onClick={addVideo}>▶ YouTube</button>
+        <button type="button" onClick={addLink}><Icon name="link" /> Link</button>
+        <button type="button" onClick={openPicker}><Icon name="media" /> Image</button>
+        <button type="button" onClick={addVideo}><Icon name="play" /> YouTube</button>
         <button type="button" onClick={addFaq}>？ FAQ</button>
         <button type="button" onClick={() => ins("<hr/><p><br/></p>")}>—</button>
         <span className="sep" />
-        <button type="button" onClick={() => cmd("removeFormat")}>✕ Fmt</button>
+        <button type="button" onClick={() => cmd("removeFormat")}><Icon name="close" /> Fmt</button>
         <div className="rte-modes">
           <button type="button" className={mode === "visual" ? "on" : ""} onClick={() => switchMode("visual")}>Visual</button>
           <button type="button" className={mode === "html" ? "on" : ""} onClick={() => switchMode("html")}>HTML</button>
@@ -297,7 +298,7 @@ export default function RichEditor({ value, onChange, placeholder = "Start writi
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => menuInsert(b.run)}
               >
-                <span className="ic">{b.ic}</span>
+                <span className="ic">{b.icon ? <Icon name={b.icon} /> : b.ic}</span>
                 <span>{b.label}</span>
               </button>
             ))}
