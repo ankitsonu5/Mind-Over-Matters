@@ -3,6 +3,7 @@
 // Rank Math-style SEO metabox — live score, snippet preview, checklist.
 import { useMemo, useState } from "react";
 import { analyzeSeo, extractFaqs, scoreColor } from "@/lib/seo-tools";
+import Icon from "@/components/Icon";
 
 const RING = { green: "#10b981", yellow: "#f5c842", red: "#ef4444" };
 
@@ -12,13 +13,13 @@ function Group({ title, tests, open, onToggle }) {
     <>
       <button type="button" className="seo-group-h" onClick={onToggle}>
         <span>{title}</span>
-        <span>{passed}/{tests.length} passed {open ? "▾" : "▸"}</span>
+        <span>{passed}/{tests.length} passed <Icon name={open ? "chevronDown" : "chevronRight"} /></span>
       </button>
       {open && (
         <ul className="seo-tests">
           {tests.map((t) => (
             <li key={t.id}>
-              <span className={`tick ${t.pass ? "ok" : "no"}`}>{t.pass ? "✓" : "✗"}</span>
+              <span className={`tick ${t.pass ? "ok" : "no"}`}><Icon name={t.pass ? "check" : "cross"} /></span>
               <span className={t.pass ? "" : "fail-txt"}>
                 {t.label}
                 {!t.pass && t.hint && <span className="hint">→ {t.hint}</span>}

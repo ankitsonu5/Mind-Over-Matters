@@ -2,6 +2,18 @@
 export const SITE_URL = "https://mindovermatterpodcasts.com";
 export const SITE_NAME = "Mind Over Matter";
 
+// One place for the strings that go into <title>, og: and twitter: tags,
+// so the brand name never drifts between pages.
+// Tel's 17 Aug direction: both "Mind Over Matter" and "Mind Over Matter
+// Podcast" are valid singular brand forms. PODCAST_NAME is the one the
+// branding audit standardised on for title suffixes, og:site_name and
+// schema — SITE_NAME stays for in-copy/byline use.
+export const PODCAST_NAME = "Mind Over Matter Podcast";
+export const SITE_TITLE = `${PODCAST_NAME} | Hosted by Ashwin Gane`;
+export const SITE_DESCRIPTION =
+  "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.";
+export const OG_IMAGE = `${SITE_URL}/images/host.jpg`;
+
 // Internal hosts: links to these stay normal (good for internal linking /
 // crawl flow). Everything else opens in a new tab with safe rel attributes.
 const INTERNAL_HOSTS = [

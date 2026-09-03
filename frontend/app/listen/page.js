@@ -3,7 +3,7 @@ import s from "../detail.module.css";
 import { platforms } from "@/data/platforms";
 import { SITE_URL } from "@/lib/seo";
 
-export const metadata = { title: "Listen — Mind Over Matter", alternates: { canonical: `${SITE_URL}/listen` } };
+export const metadata = { title: "Listen", alternates: { canonical: `${SITE_URL}/listen` } };
 
 export default function ListenPage() {
   return (

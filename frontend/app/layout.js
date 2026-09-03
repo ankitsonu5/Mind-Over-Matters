@@ -5,31 +5,36 @@ import Footer from "@/components/Footer";
 import Aos from "@/components/Aos";
 import PluginInjector from "@/components/PluginInjector";
 import FormRuntime from "@/components/FormRuntime";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION, OG_IMAGE, PODCAST_NAME } from "@/lib/seo";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Mind Over Matter | Official Podcast by Ashwin Gane",
-    template: "%s | Mind Over Matter",
+    default: SITE_TITLE,
+    template: `%s | ${PODCAST_NAME}`,
   },
-  description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
+  description: SITE_DESCRIPTION,
   icons: {
     icon: `${SITE_URL}/images/logo.png`,
     shortcut: `${SITE_URL}/images/logo.png`,
     apple: `${SITE_URL}/images/logo.png`,
   },
+  /* Sitewide og:/twitter: defaults. Every page inherits these unless it
+     sets its own, so og:image is never missing on a shared link. */
   openGraph: {
-    siteName: "Mind Over Matter",
-    title: "Mind Over Matter | Official Podcast by Ashwin Gane",
-    description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
+    siteName: PODCAST_NAME,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
     type: "website",
     locale: "en_US",
+    images: [{ url: OG_IMAGE, width: 1300, height: 732, alt: "Mind Over Matter — Ashwin Gane" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mind Over Matter | Official Podcast by Ashwin Gane",
-    description: "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE],
   },
   alternates: { canonical: SITE_URL },
 };

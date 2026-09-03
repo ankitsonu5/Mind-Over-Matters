@@ -4,7 +4,7 @@ import s from "./ep-detail.module.css";
 import { getAllEpisodes, getEpisode, ytId } from "@/lib/episodes";
 import { getAllPosts } from "@/lib/blog";
 import { platforms } from "@/data/platforms";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, SITE_NAME, PODCAST_NAME } from "@/lib/seo";
 
 
 export const dynamic = "force-dynamic";
@@ -66,7 +66,7 @@ export default async function EpisodeDetail({ params }) {
               uploadDate: ep.rawDate, thumbnailUrl: `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
               embedUrl: `https://www.youtube-nocookie.com/embed/${id}` }
           : undefined,
-        partOfSeries: { "@type": "PodcastSeries", name: SITE_NAME, url: SITE_URL },
+        partOfSeries: { "@type": "PodcastSeries", name: PODCAST_NAME, url: SITE_URL },
         actor: ep.guest ? { "@type": "Person", name: ep.guest } : undefined,
       },
       {

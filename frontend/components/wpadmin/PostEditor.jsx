@@ -11,6 +11,7 @@ import MediaPicker from "@/components/wpadmin/MediaPicker";
 import { Alert, Head, slugifyClient } from "@/components/wpadmin/ui";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 const EMPTY_SEO = { focusKeyword: "", title: "", description: "", schemaType: "BlogPosting", faqSchema: false };
 
 export default function PostEditor({ id }) {
@@ -105,7 +106,7 @@ export default function PostEditor({ id }) {
         action={
           <div style={{ display: "flex", gap: 9 }}>
             {doc.status === "published" && !isNew && (
-              <a className="btn btn-g" href={`/blog/${effectiveSlug}`} target="_blank" rel="noreferrer">👁 View</a>
+              <a className="btn btn-g" href={`/blog/${effectiveSlug}`} target="_blank" rel="noreferrer"><Icon name="view" /> View</a>
             )}
             <button className="btn btn-g" disabled={busy} onClick={() => save("draft")}>Save Draft</button>
             <button className="btn btn-p" disabled={busy} onClick={() => save("published")}>
@@ -198,10 +199,10 @@ export default function PostEditor({ id }) {
               <input ref={coverRef} type="file" accept="image/*" hidden onChange={onCoverFile} />
               <div style={{ display: "grid", gap: 8, marginBottom: 10 }}>
                 <button className="btn btn-p btn-sm" style={{ justifyContent: "center" }} onClick={() => setPickerOpen(true)}>
-                  🖼 Choose from Library / Upload
+                  <Icon name="media" /> Choose from Library / Upload
                 </button>
                 <button className="btn btn-g btn-sm" style={{ justifyContent: "center" }} disabled={coverBusy} onClick={() => coverRef.current?.click()}>
-                  {coverBusy ? "Uploading…" : "⬆ Quick Upload"}
+                  {coverBusy ? "Uploading…" : <><Icon name="upload" /> Quick Upload</>}
                 </button>
               </div>
               <MediaPicker

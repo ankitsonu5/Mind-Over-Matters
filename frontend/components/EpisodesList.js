@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
 import s from "@/app/episodes/episodes.module.css";
+import Icon from "@/components/Icon";
 
 export default function EpisodesList({ episodes = [] }) {
   const root = useRef(null);
@@ -75,7 +76,7 @@ export default function EpisodesList({ episodes = [] }) {
             <div className={s.featGuest}>{featured.guest} · {featured.role}</div>
             <p className={s.featTagline}>{featured.tagline}</p>
             <div className={s.featMeta}><span>{featured.date}</span><span>{featured.duration}</span></div>
-            <span className={s.featBtn}>▶ Watch Now</span>
+            <span className={s.featBtn}><Icon name="play" /> Watch Now</span>
           </div>
         </Link>
       )}

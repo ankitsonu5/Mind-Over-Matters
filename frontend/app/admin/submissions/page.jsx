@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Alert, Head, fmtDate } from "@/components/wpadmin/ui";
 
 import { apiFetch } from "@/lib/api";
+import Icon from "@/components/Icon";
 const FRIENDLY = {
   contact: "Contact List",
   "guest-application": "Guest List",
@@ -141,10 +142,10 @@ export default function Submissions() {
               </span>
               <span style={{ display: "flex", gap: 8 }}>
                 <button className="btn btn-g btn-sm" disabled={!!exporting} onClick={() => exportPdf(formName, rows, title)}>
-                  {exporting === formName + "-pdf" ? "Exporting…" : "⬇ PDF"}
+                  {exporting === formName + "-pdf" ? "Exporting…" : <><Icon name="download" /> PDF</>}
                 </button>
                 <button className="btn btn-g btn-sm" disabled={!!exporting} onClick={() => exportExcel(formName, rows, title)}>
-                  {exporting === formName + "-xlsx" ? "Exporting…" : "⬇ Excel"}
+                  {exporting === formName + "-xlsx" ? "Exporting…" : <><Icon name="download" /> Excel</>}
                 </button>
               </span>
             </div>
@@ -162,7 +163,7 @@ export default function Submissions() {
                   </span>
                   <span className="row-acts">
                     <button className="a-d" onClick={(e) => del(s, e)}>Delete</button>
-                    <span style={{ color: "#4d5f80" }}>{openId === s.id ? "▾" : "▸"}</span>
+                    <span style={{ color: "#4d5f80" }}><Icon name={openId === s.id ? "chevronDown" : "chevronRight"} /></span>
                   </span>
                 </button>
                 {openId === s.id && (
