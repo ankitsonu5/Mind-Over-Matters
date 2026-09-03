@@ -107,16 +107,7 @@ export async function getAllPosts() {
   } catch {
     dbPosts = [];
   }
-  const dbSlugs = new Set(dbPosts.map((p) => p.slug));
-
-  let filePosts = [];
-  if (fs.existsSync(BLOG_DIR)) {
-    filePosts = fs.readdirSync(BLOG_DIR)
-      .filter((f) => f.endsWith(".md"))
-      .map(buildPostFromMd)
-      .filter((p) => !dbSlugs.has(p.slug));
-  }
-  return [...dbPosts, ...filePosts].sort(
+  return dbPosts.sort(
     (a, b) => new Date(b.rawDate) - new Date(a.rawDate)
   );
 }
@@ -173,16 +164,7 @@ export async function getAllEpisodes() {
   } catch {
     dbEps = [];
   }
-  const dbSlugs = new Set(dbEps.map((e) => e.slug));
-
-  let fileEps = [];
-  if (fs.existsSync(EP_DIR)) {
-    fileEps = fs.readdirSync(EP_DIR)
-      .filter((f) => f.endsWith(".md"))
-      .map(buildEpisodeFromMd)
-      .filter((e) => !dbSlugs.has(e.slug));
-  }
-  return [...dbEps, ...fileEps].sort((a, b) => b.number - a.number);
+  return dbEps.sort((a, b) => b.number - a.number);
 }
 
 export async function getEpisode(slug) {

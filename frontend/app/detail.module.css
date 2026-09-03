@@ -1,6 +1,6 @@
 .page{ padding:130px 0 80px; position:relative; z-index:5; }
 .inner{ max-width:1100px; margin:0 auto; padding:0 clamp(18px,4vw,32px); }
-.back{ font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
+.back{ display:block; margin-bottom:10px; font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); }
 .back:hover{ color:var(--cyan); }
 .eyebrow{ font-family:"Montserrat",sans-serif; font-size:11px; letter-spacing:.34em; text-transform:uppercase; color:var(--cyan); display:inline-block; margin:22px 0 12px; }
 

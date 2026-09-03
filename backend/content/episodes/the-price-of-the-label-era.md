@@ -1,4 +1,4 @@
----
+<!-- ---
 title: "The Price of the Label Era"
 number: 3
 guest: "Dre Butterz"
@@ -11,4 +11,4 @@ live: false
 tagline: "Ashwin Gane ft. Dre Butterz — reality, perception, and control."
 ---
 
-Producer Dre Butterz breaks down the real economics of the label era — what artists trade away for a shot, and who keeps the upside.
+Producer Dre Butterz breaks down the real economics of the label era — what artists trade away for a shot, and who keeps the upside. -->

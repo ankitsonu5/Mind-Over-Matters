@@ -75,11 +75,14 @@ export const footer = {
     { name: "x", href: "https://x.com/MOMPodcastShow" },
     { name: "youtube", href: "https://www.youtube.com/@MindOverMatter-w8w" },
     { name: "instagram", href: "https://www.instagram.com/mindovermatter.show/" },
+    // TODO: real TikTok profile URL (currently the bare tiktok.com homepage)
     { name: "tiktok", href: "https://tiktok.com" },
     { name: "spotify", href: "https://open.spotify.com/show/1gjHxeDVFhwJLNc4j3TRIX" },
     { name: "apple", href: "https://podcasts.apple.com/us/podcast/mind-over-matter/id1891023935" },
-    { name: "threads", href: "https://threads.net" },
+    { name: "threads", href: "https://www.threads.net/@mindovermatter.show" },
+    // TODO: real Pinterest profile URL (currently the bare pinterest.com homepage)
     { name: "pinterest", href: "https://pinterest.com" },
+    // TODO: real SoundCloud profile URL (currently the bare soundcloud.com homepage)
     { name: "soundcloud", href: "https://soundcloud.com" },
   ],
 };

@@ -56,7 +56,7 @@ function LoginForm() {
             {busy ? "Logging in…" : "Log In"}
           </button>
         </div>
-        <p className="login-note">Default: admin / admin123 — create more users in the Users section; override the default via the <code>ADMIN_PASSWORD</code> env variable.</p>
+        {/* <p className="login-note">Default: admin / admin123 — create more users in the Users section; override the default via the <code>ADMIN_PASSWORD</code> env variable.</p> */}
       </div>
     </div>
   );

@@ -63,6 +63,7 @@ export default function EpisodesList({ episodes = [] }) {
       {/* ---------- Featured episode ---------- */}
       {featured && (
         <Link href={`/episodes/${featured.slug}`} className={s.featured}>
+          <img className={s.featBlur} src={featured.image} alt="" aria-hidden="true" />
           <img className={s.featBg} src={featured.image} alt={featured.title} />
           <span className={s.featVeil} />
           <div className={s.featInner}>

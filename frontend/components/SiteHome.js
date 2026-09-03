@@ -9,7 +9,7 @@ import HeroVideoScrub from "./HeroVideoScrub";
 import { episodesDeck, heroVideo } from "@/data/content";
 import { ytId } from "@/data/episodes";
 
-export default function SiteHome({ articles = [], ig = {} }) {
+export default function SiteHome({ articles = [], ig = {}, episodes = [] }) {
   const ranRef = useRef(false);
 
   useEffect(() => {
@@ -22,8 +22,12 @@ export default function SiteHome({ articles = [], ig = {} }) {
     window.ScrollTrigger = ScrollTrigger;
     gsap.registerPlugin(ScrollTrigger);
 
-    // expose editable content to the original scripts
-    window.__MOM__ = { episodesDeck, ig, articles };
+    // expose editable content to the original scripts.
+    // The hand-written deck in data/content.js wins if it is filled in;
+    // otherwise fall back to the episodes coming from the CMS.
+    const deck =
+      Array.isArray(episodesDeck) && episodesDeck.length ? episodesDeck : episodes;
+    window.__MOM__ = { episodesDeck: deck, ig, articles };
 
     // set the hero video from data
     const id = ytId(heroVideo);
@@ -38,9 +42,22 @@ export default function SiteHome({ articles = [], ig = {} }) {
     // execute the original site scripts, in order, in global scope
     const added = [];
     scripts.forEach((code) => {
+      const showcaseCode = code
+        .replace(
+          "if(newStep !== targetStep && Date.now() - scrollDebounce > 300){",
+          "if(exiting) return;\n    if(newStep < targetStep) scrollCount = 0;\n    if(newStep > targetStep && Date.now() - scrollDebounce > 300){"
+        )
+        .replace(
+          "if(nextSection){\n          nextSection.scrollIntoView({behavior: 'smooth'});\n        }",
+          "if(nextSection && !exiting){\n          exiting = true;\n          window.scrollTo({top: nextSection.getBoundingClientRect().top + window.scrollY, behavior: 'smooth'});\n          setTimeout(function(){ exiting = false; }, 900);\n        }"
+        )
+        .replace(
+          "window.scrollTo({top: nextSection.getBoundingClientRect().top + window.scrollY, behavior: 'smooth'});\n          setTimeout(function(){ exiting = false; }, 900);",
+          "var startY = window.scrollY;\n          var endY = nextSection.getBoundingClientRect().top + startY;\n          var startTime = performance.now();\n          function moveToNextSection(now){\n            var progress = Math.min((now - startTime) / 900, 1);\n            var eased = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;\n            window.scrollTo(0, startY + (endY - startY) * eased);\n            if(progress < 1) requestAnimationFrame(moveToNextSection);\n            else exiting = false;\n          }\n          requestAnimationFrame(moveToNextSection);"
+        );
       const el = document.createElement("script");
       el.type = "text/javascript";
-      el.text = code;
+      el.text = showcaseCode;
       document.body.appendChild(el);
       added.push(el);
     });

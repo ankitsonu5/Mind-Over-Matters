@@ -6,6 +6,12 @@
 .h1 span{ color:var(--cyan); }
 .sub{ color:var(--muted); font-family:"Lora",serif; font-style:italic; font-size:18px; margin-top:10px; max-width:560px; }
 
+.categoryFilter,
+.filters,
+.blogFilters {
+  display: none !important;
+}
+
 /* ---------- Featured entry (editorial split) ---------- */
 .featured{ display:grid; grid-template-columns:1.25fr 1fr; margin-top:42px; border-radius:18px; overflow:hidden;
   text-decoration:none; color:inherit; background:var(--card); border:1px solid rgba(224,199,148,.16);
