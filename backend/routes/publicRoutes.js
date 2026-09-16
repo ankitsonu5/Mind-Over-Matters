@@ -21,8 +21,8 @@ router.get("/public/plugins", h(pub.plugins));
 router.get("/public/settings", h(pub.settings));
 router.get("/public/sitemap", h(pub.sitemap));
 
-/* -------- media bytes: /api/media/:id (referenced inside post HTML) -------- */
-router.get("/media/:id", h(media.serve));
+/* -------- media bytes: SEO filename plus legacy ID compatibility -------- */
+router.get("/media/:filename", h(media.serve));
 
 /* -------- every form on the site posts here -------- */
 router.post("/submit", h(subs.submit));

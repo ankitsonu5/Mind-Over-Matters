@@ -28,7 +28,9 @@ export default function Footer() {
         {/* bio */}
         <div>
           <h3 style={{ fontFamily: '"Cinzel",serif', fontWeight: 800, fontSize: 26, marginBottom: 18 }}>
-            {footer.name}
+            <a href="https://ashwingane.com/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>
+              {footer.name}
+            </a>
           </h3>
           <p style={{ color: "#aeb9d0", fontSize: 15, lineHeight: 1.75, maxWidth: 360 }}>
             <strong style={{ color: "#fff" }}>{footer.bioLead}</strong> {footer.bio}

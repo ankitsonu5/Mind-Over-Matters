@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import s from "./blog.module.css";
 import { getAllPosts, getPost } from "@/lib/blog";
 import { getEpisode, ytId } from "@/lib/episodes";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { SITE_URL, HOST_URL, SITE_NAME } from "@/lib/seo";
 import { extractFaqs } from "@/lib/seo-tools";
 
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
     title: { absolute: seoTitle },
     description: seoDesc,
     keywords: p.tags,
-    authors: [{ name: "Ashwin Gane", url: `${SITE_URL}/about` }],
+    authors: [{ name: "Ashwin Gane", url: HOST_URL }],
     alternates: { canonical: url },
     openGraph: {
       type: "article",
@@ -70,7 +70,7 @@ export default async function BlogPost({ params }) {
         image: p.image ? [p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`] : undefined,
         datePublished: p.rawDate,
         dateModified: p.rawDate,
-        author: { "@type": "Person", name: "Ashwin Gane", url: `${SITE_URL}/about` },
+        author: { "@type": "Person", name: "Ashwin Gane", url: HOST_URL, sameAs: [HOST_URL] },
         publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
         keywords: [p.seo?.focusKeyword, ...p.tags].filter(Boolean).join(", "),
         articleSection: p.category,

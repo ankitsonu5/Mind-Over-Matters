@@ -4,40 +4,76 @@
 //  cap exists because base64 inflates the payload by roughly a third and
 //  MongoDB documents are limited to 16MB.
 // =====================================================================
-import { getAll, getById, insert, remove } from "../lib/store.js";
+import { getAll, insert, remove } from "../lib/store.js";
 
 const MAX_BYTES = 4 * 1024 * 1024;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+
+function createSlug(filename) {
+  return String(filename)
+    .toLowerCase()
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 120) || "image";
+}
+
+function getExtension(filename) {
+  const extension = String(filename).split(".").pop();
+  return extension && extension !== filename ? `.${extension.toLowerCase()}` : "";
+}
+
+function getPublicFilename(item) {
+  const slug = item.slug || createSlug(item.filename);
+  const extension = item.extension || getExtension(item.filename);
+  return `${slug}${extension}`;
+}
 
 /* GET /api/admin/media - metadata only, never the base64 payloads */
 export async function list(_req, res) {
   const media = await getAll("media");
   res.json(
     media
-      .map(({ data, ...m }) => ({ ...m, url: `/api/media/${m.id}` }))
+      .map(({ data, ...item }) => ({
+        ...item,
+        alt: item.alt || item.filename.replace(/\.[^/.]+$/, ""),
+        url: `/media/${getPublicFilename(item)}`,
+      }))
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   );
 }
 
-/* POST /api/admin/media  body: { filename, mime, data(base64) } */
+/* POST /api/admin/media body: { filename, mime, data(base64), alt, title } */
 export async function create(req, res) {
-  const { filename, mime, data } = req.body || {};
+  const { filename, mime, data, alt, title } = req.body || {};
   if (!filename || !mime || !data) {
     return res.status(400).json({ error: "filename, mime, data required" });
+  }
+  if (!ALLOWED_TYPES.includes(mime)) {
+    return res.status(400).json({ error: "Only image files allowed" });
   }
   const bytes = Math.ceil((data.length * 3) / 4);
   if (bytes > MAX_BYTES) {
     return res.status(400).json({
-      error: "File exceeds 4MB - use a smaller image or an external URL.",
+      error: "Image size must be below 4MB",
     });
   }
+  const safeFilename = String(filename).slice(0, 200);
+  const baseSlug = createSlug(safeFilename);
+  const slug = `${baseSlug}-${Date.now()}`;
+  const extension = getExtension(safeFilename);
   const item = await insert("media", {
-    filename: String(filename).slice(0, 200),
+    filename: safeFilename,
+    slug,
+    extension,
     mime: String(mime).slice(0, 100),
     size: bytes,
+    alt: alt || baseSlug.replace(/-/g, " "),
+    title: title || baseSlug.replace(/-/g, " "),
     data,
   });
   const { data: _payload, ...meta } = item;
-  res.status(201).json({ ...meta, url: `/api/media/${item.id}` });
+  res.status(201).json({ ...meta, url: `/media/${slug}${extension}` });
 }
 
 /* DELETE /api/admin/media/:id */
@@ -46,9 +82,11 @@ export async function removeOne(req, res) {
   res.json({ ok: true });
 }
 
-/* GET /api/media/:id - public, serves the actual bytes */
+/* GET /api/media/:filename - public, serves SEO-friendly filenames */
 export async function serve(req, res) {
-  const item = await getById("media", req.params.id);
+  const filename = req.params.filename;
+  const media = await getAll("media");
+  const item = media.find((m) => getPublicFilename(m) === filename);
   if (!item?.data) return res.status(404).send("Not found");
   const buf = Buffer.from(item.data, "base64");
   res.set({

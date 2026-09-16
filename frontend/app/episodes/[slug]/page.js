@@ -4,7 +4,7 @@ import s from "./ep-detail.module.css";
 import { getAllEpisodes, getEpisode, ytId } from "@/lib/episodes";
 import { getAllPosts } from "@/lib/blog";
 import { platforms } from "@/data/platforms";
-import { SITE_URL, SITE_NAME, PODCAST_NAME } from "@/lib/seo";
+import { SITE_URL, HOST_URL, SITE_NAME, PODCAST_NAME } from "@/lib/seo";
 
 
 export const dynamic = "force-dynamic";
@@ -67,6 +67,7 @@ export default async function EpisodeDetail({ params }) {
               embedUrl: `https://www.youtube-nocookie.com/embed/${id}` }
           : undefined,
         partOfSeries: { "@type": "PodcastSeries", name: PODCAST_NAME, url: SITE_URL },
+        author: { "@type": "Person", name: "Ashwin Gane", url: HOST_URL, sameAs: [HOST_URL] },
         actor: ep.guest ? { "@type": "Person", name: ep.guest } : undefined,
       },
       {

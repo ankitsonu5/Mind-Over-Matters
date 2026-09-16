@@ -2,15 +2,39 @@ import SiteHome from "@/components/SiteHome";
 import { getAllPosts } from "@/lib/blog";
 import { getAllEpisodes } from "@/lib/episodes";
 import { getInstagram } from "@/lib/instagram";
-import { SITE_URL, SITE_NAME, OG_IMAGE, SITE_DESCRIPTION, PODCAST_NAME } from "@/lib/seo";
+import { SITE_URL, HOST_URL, SITE_NAME, OG_IMAGE, SITE_DESCRIPTION, PODCAST_NAME } from "@/lib/seo";
 import { platforms } from "@/data/platforms";
 
 // The root layout's title.template does NOT apply to this file (same route
 // segment), so the homepage title is written out in full here.
 export const metadata = {
-  title: "Mind Over Matter Podcast | Hosted by Ashwin Gane",
+  title: "Mind Over Matter Podcast with Ashwin Gane | Culture, Power & Perception",
   description: SITE_DESCRIPTION,
   alternates: { canonical: SITE_URL },
+  keywords: [
+    "Mind Over Matter podcast",
+    "Ashwin Gane podcast",
+    "US culture podcast",
+    "Detroit podcast",
+    "American culture podcast",
+    "entertainment and identity podcast",
+    "culture and identity podcast",
+    "power and perception",
+    "creativity podcast",
+  ],
+  openGraph: {
+    title: "Mind Over Matter Podcast with Ashwin Gane",
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    type: "website",
+    images: [{ url: OG_IMAGE, width: 1300, height: 732, alt: "Mind Over Matter Podcast with Ashwin Gane" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mind Over Matter Podcast with Ashwin Gane",
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 };
 
 export const dynamic = "force-dynamic";
@@ -36,8 +60,10 @@ const podcastJsonLd = {
   description: SITE_DESCRIPTION,
   image: OG_IMAGE,
   inLanguage: "en-US",
-  author: { "@type": "Person", name: "Ashwin Gane", url: `${SITE_URL}/about` },
-  creator: { "@type": "Person", name: "Ashwin Gane", url: `${SITE_URL}/about` },
+  areaServed: { "@type": "Country", name: "United States" },
+  audience: { "@type": "Audience", audienceType: "United States podcast listeners" },
+  author: { "@type": "Person", name: "Ashwin Gane", url: HOST_URL, sameAs: [HOST_URL] },
+  creator: { "@type": "Person", name: "Ashwin Gane", url: HOST_URL, sameAs: [HOST_URL] },
   publisher: {
     "@type": "Organization",
     name: PODCAST_NAME,

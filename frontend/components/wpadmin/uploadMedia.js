@@ -16,5 +16,5 @@ export async function uploadMedia(file) {
   });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Upload failed");
-  return data.url; // /api/media/<id>
+  return data.url; // /media/<seo-friendly-file-name>
 }

@@ -1,5 +1,6 @@
 // Shared SEO helpers for detail pages.
 export const SITE_URL = "https://mindovermatterpodcasts.com";
+export const HOST_URL = "https://ashwingane.com";
 export const SITE_NAME = "Mind Over Matter";
 
 // One place for the strings that go into <title>, og: and twitter: tags,
@@ -9,9 +10,9 @@ export const SITE_NAME = "Mind Over Matter";
 // branding audit standardised on for title suffixes, og:site_name and
 // schema — SITE_NAME stays for in-copy/byline use.
 export const PODCAST_NAME = "Mind Over Matter Podcast";
-export const SITE_TITLE = `${PODCAST_NAME} | Hosted by Ashwin Gane`;
+export const SITE_TITLE = `${PODCAST_NAME} with Ashwin Gane | Culture, Power & Perception`;
 export const SITE_DESCRIPTION =
-  "Official podcast by Ashwin Gane. A 3D audio-visual journey into the mind.";
+  "Mind Over Matter is a Detroit-rooted US podcast hosted by Ashwin Gane, exploring culture, power, perception, identity, creativity, and the stories shaping America and the world.";
 export const OG_IMAGE = `${SITE_URL}/images/host.jpg`;
 
 // Internal hosts: links to these stay normal (good for internal linking /

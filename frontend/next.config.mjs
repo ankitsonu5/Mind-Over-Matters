@@ -17,11 +17,11 @@ const nextConfig = {
      Every /api/* request the browser makes is forwarded to the backend.
      This is what keeps the two apps separate without paying for CORS or
      cross-site cookies: as far as the browser is concerned there is only
-     one origin. It also means media URLs already saved inside post HTML
-     (/api/media/<id>) keep resolving exactly as they did before.
+    one origin. Public media URLs use the separate /media/* rewrite below.
   --------------------------------------------------------------------- */
   async rewrites() {
     return [
+      { source: "/media/:filename", destination: `${API_URL}/api/media/:filename` },
       { source: "/api/:path*", destination: `${API_URL}/api/:path*` },
     ];
   },
