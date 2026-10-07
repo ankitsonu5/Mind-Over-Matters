@@ -5,6 +5,7 @@ import { getAllPosts, getPost } from "@/lib/blog";
 import { getEpisode, ytId } from "@/lib/episodes";
 import { SITE_URL, HOST_URL, SITE_NAME } from "@/lib/seo";
 import { extractFaqs } from "@/lib/seo-tools";
+import { mediaUrl } from "@/lib/media";
 
 
 export const dynamic = "force-dynamic";
@@ -133,7 +134,7 @@ export default async function BlogPost({ params }) {
         {/* hero image */}
         {p.image && (
           <figure className={s.heroImg}>
-            <img src={p.image} alt={p.imageAlt || p.titlePlain} />
+            <img src={mediaUrl(p.image || ep?.image)} alt={p.imageAlt || p.titlePlain} />
             <figcaption>{p.category} · {SITE_NAME}</figcaption>
           </figure>
         )}
@@ -185,7 +186,7 @@ export default async function BlogPost({ params }) {
                       loading="lazy"
                     />
                   ) : (
-                    ep.image && <img src={ep.image} alt={ep.title} loading="lazy" />
+                    ep.image && <img src={mediaUrl(ep.image)} alt={ep.title} loading="lazy" />
                   )}
                   <i className={s.epPlay} aria-hidden="true" />
                 </span>
@@ -245,7 +246,7 @@ export default async function BlogPost({ params }) {
                   data-aos-delay={String(i * 100)}
                 >
                   <span className={s.relThumb}>
-                    {r.image && <img src={r.image} alt={r.titlePlain} loading="lazy" />}
+                    {r.image && <img src={mediaUrl(r.image)} alt={r.titlePlain} loading="lazy" />}
                   </span>
                   <span className={s.relCat}>{r.category}</span>
                   <strong>{r.titlePlain}</strong>

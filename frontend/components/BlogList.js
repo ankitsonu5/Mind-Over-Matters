@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import s from "@/app/blog/blog-list.module.css";
+import { mediaUrl } from "@/lib/media";
 
 export default function BlogList({ posts = [] }) {
   const root = useRef(null);
@@ -59,7 +60,7 @@ export default function BlogList({ posts = [] }) {
       {featured && (
         <Link href={`/blog/${featured.slug}`} className={s.featured}>
           <div className={s.featMedia}>
-            <img src={featured.img} alt={featured.titlePlain} />
+            <img src={mediaUrl(featured.img)} alt={featured.titlePlain} />
             <span className={s.featVeil} />
           </div>
           <div className={s.featBody}>
@@ -94,7 +95,7 @@ export default function BlogList({ posts = [] }) {
         {filtered.map((p) => (
           <Link key={p.slug} href={`/blog/${p.slug}`} data-open className={s.card}>
             <div className={s.media}>
-              <img src={p.img} alt={p.titlePlain} />
+              <img src={mediaUrl(p.img)} alt={p.titlePlain} />
               <div className={s.ghost}>{String(p.num || 0).padStart(2, "0")}</div>
             </div>
             <div className={s.body}>

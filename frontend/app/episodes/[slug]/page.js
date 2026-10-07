@@ -5,6 +5,7 @@ import { getAllEpisodes, getEpisode, ytId } from "@/lib/episodes";
 import { getAllPosts } from "@/lib/blog";
 import { platforms } from "@/data/platforms";
 import { SITE_URL, HOST_URL, SITE_NAME, PODCAST_NAME } from "@/lib/seo";
+import { mediaUrl } from "@/lib/media";
 
 
 export const dynamic = "force-dynamic";
@@ -123,7 +124,7 @@ export default async function EpisodeDetail({ params }) {
             allowFullScreen
           />
         ) : (
-          <img src={ep.image} alt={ep.title} className={s.playerImg} />
+          <img src={mediaUrl(ep.image)} alt={ep.title} className={s.playerImg} />
         )}
       </div>
 
@@ -212,7 +213,7 @@ export default async function EpisodeDetail({ params }) {
                 >
                   <span className={s.moreThumb}>
                     <img
-                      src={mid ? `https://img.youtube.com/vi/${mid}/hqdefault.jpg` : m.image}
+                      src={mid ? `https://img.youtube.com/vi/${mid}/hqdefault.jpg` : mediaUrl(m.image)}
                       alt={m.title}
                       loading="lazy"
                     />
