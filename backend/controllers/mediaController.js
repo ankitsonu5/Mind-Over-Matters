@@ -4,23 +4,27 @@
 //  cap exists because base64 inflates the payload by roughly a third and
 //  MongoDB documents are limited to 16MB.
 // =====================================================================
-import { getAll, insert, remove } from "../lib/store.js";
+import { getAll, getById, insert, remove } from "../lib/store.js";
 
 const MAX_BYTES = 4 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
 function createSlug(filename) {
-  return String(filename)
-    .toLowerCase()
-    .replace(/\.[^/.]+$/, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 120) || "image";
+  return (
+    String(filename)
+      .toLowerCase()
+      .replace(/\.[^/.]+$/, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .slice(0, 120) || "image"
+  );
 }
 
 function getExtension(filename) {
   const extension = String(filename).split(".").pop();
-  return extension && extension !== filename ? `.${extension.toLowerCase()}` : "";
+  return extension && extension !== filename
+    ? `.${extension.toLowerCase()}`
+    : "";
 }
 
 function getPublicFilename(item) {
@@ -39,7 +43,7 @@ export async function list(_req, res) {
         alt: item.alt || item.filename.replace(/\.[^/.]+$/, ""),
         url: `/media/${getPublicFilename(item)}`,
       }))
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)),
   );
 }
 
@@ -85,8 +89,12 @@ export async function removeOne(req, res) {
 /* GET /api/media/:filename - public, serves SEO-friendly filenames */
 export async function serve(req, res) {
   const filename = req.params.filename;
-  const media = await getAll("media");
-  const item = media.find((m) => getPublicFilename(m) === filename);
+  // Legacy content still references /api/media/<id> - resolve those first
+  let item = await getById("media", filename);
+  if (!item) {
+    const media = await getAll("media");
+    item = media.find((m) => getPublicFilename(m) === filename);
+  }
   if (!item?.data) return res.status(404).send("Not found");
   const buf = Buffer.from(item.data, "base64");
   res.set({
