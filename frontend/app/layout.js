@@ -1,3 +1,4 @@
+
 import "./globals.css";
 import BgVideo from "@/components/BgVideo";
 import Nav from "@/components/Nav";
@@ -6,6 +7,8 @@ import Aos from "@/components/Aos";
 import PluginInjector from "@/components/PluginInjector";
 import FormRuntime from "@/components/FormRuntime";
 import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION, OG_IMAGE, PODCAST_NAME } from "@/lib/seo";
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -63,6 +66,8 @@ export default function RootLayout({ children }) {
         <FormRuntime />
         <PluginInjector />
       </body>
+
+      <GoogleAnalytics gaId="G-FF7E5L417S" />
     </html>
   );
 }
