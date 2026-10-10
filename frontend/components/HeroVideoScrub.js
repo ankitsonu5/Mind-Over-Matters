@@ -34,6 +34,7 @@ export default function HeroVideoScrub() {
       video.muted = true;
       video.playsInline = true;
       video.preload = "auto";
+      video.poster = "/images/cosmic-bg.jpg";
       try { video.pause(); } catch (e) {}
 
       let trigger = null;
@@ -70,9 +71,10 @@ export default function HeroVideoScrub() {
         const d = dur();
         if (d <= 0) return;
         if (trigger) { trigger.kill(); trigger = null; }
-        // runway length scales with clip length: ~120vh of scroll per second,
-        // so a 14s clip pins for a long, deliberate scrub.
-        const px = Math.round(window.innerHeight * d * 0.6);
+        // Keep the full scroll-scrub animation, but shorten its runway on
+        // phones so the sections below don't feel hidden behind the hero.
+        const scrollPerSecond = window.matchMedia("(max-width: 760px)").matches ? 0.12 : 0.6;
+        const px = Math.round(window.innerHeight * d * scrollPerSecond);
         trigger = ST.create({
           trigger: hero,
           start: "top top",

@@ -100,6 +100,12 @@ function buildPostFromDb(p) {
   };
 }
 
+function mergeBySlug(seedContent, publishedContent) {
+  const merged = new Map(seedContent.map((item) => [item.slug, item]));
+  publishedContent.forEach((item) => merged.set(item.slug, item));
+  return [...merged.values()];
+}
+
 export async function getAllPosts() {
   let dbPosts = [];
   try {
@@ -107,7 +113,12 @@ export async function getAllPosts() {
   } catch {
     dbPosts = [];
   }
-  return dbPosts.sort(
+  const markdownPosts = fs.existsSync(BLOG_DIR)
+    ? fs.readdirSync(BLOG_DIR)
+      .filter((file) => file.endsWith(".md"))
+      .map(buildPostFromMd)
+    : [];
+  return mergeBySlug(markdownPosts, dbPosts).sort(
     (a, b) => new Date(b.rawDate) - new Date(a.rawDate)
   );
 }
@@ -164,7 +175,12 @@ export async function getAllEpisodes() {
   } catch {
     dbEps = [];
   }
-  return dbEps.sort((a, b) => b.number - a.number);
+  const markdownEpisodes = fs.existsSync(EP_DIR)
+    ? fs.readdirSync(EP_DIR)
+      .filter((file) => file.endsWith(".md"))
+      .map(buildEpisodeFromMd)
+    : [];
+  return mergeBySlug(markdownEpisodes, dbEps).sort((a, b) => b.number - a.number);
 }
 
 export async function getEpisode(slug) {

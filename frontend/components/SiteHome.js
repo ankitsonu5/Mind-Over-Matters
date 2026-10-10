@@ -39,13 +39,59 @@ export default function SiteHome({ articles = [], ig = {}, episodes = [] }) {
       );
     }
 
+    const journalTemplate = document.getElementById("tpl-journal");
+    if (journalTemplate) {
+      const mobileCardStyles = document.createElement("style");
+      mobileCardStyles.textContent =
+        "@media (max-width: 760px) { .deck { width: 740px; height: 382px; } }";
+      journalTemplate.content.appendChild(mobileCardStyles);
+    }
+    const listenTemplate = document.getElementById("tpl-listen");
+    if (listenTemplate) {
+      const mobileSectionStyles = document.createElement("style");
+      mobileSectionStyles.textContent =
+        "@media (max-width: 760px) { .wrap { height: 220vh; } }";
+      listenTemplate.content.appendChild(mobileSectionStyles);
+    }
+
     // execute the original site scripts, in order, in global scope
     const added = [];
     scripts.forEach((code) => {
-      const showcaseCode = code
+      const sectionCode = code
+        .replace(
+          /\n\s*\/\/ Inject latest blog article into the showcase[\s\S]*?\n\s*if\(!EPISODES\.length\) return;/,
+          "\n  if(!EPISODES.length) return;"
+        )
+        .replace(
+          'track.style.height = "calc(100vh + "+(STEPS*70)+"vh)";',
+          'track.style.height = "calc(100vh + "+(STEPS*(window.matchMedia("(max-width: 760px)").matches?40:70))+"vh)";'
+        )
+        .replace(
+          'track.style.height="calc(100vh + "+(STEPS*70)+"vh)";',
+          'track.style.height="calc(100vh + "+(STEPS*(window.matchMedia("(max-width: 760px)").matches?40:70))+"vh)";'
+        )
+        .replace(
+          "root.style.height = ((CYCLE+1)*100)+'vh';",
+          "root.style.height = ((CYCLE+1)*(window.matchMedia('(max-width: 760px)').matches?70:100))+'vh';"
+        );
+      const responsiveCode = sectionCode.includes("var scrollDebounce = 0, scrollCount = 0;")
+        ? sectionCode.replace(
+            "if(newStep !== targetStep && Date.now() - scrollDebounce > 300){",
+            "if(!window.matchMedia('(max-width: 880px)').matches && newStep !== targetStep && Date.now() - scrollDebounce > 300){"
+          )
+        : sectionCode;
+      const showcaseCode = responsiveCode
         .replace(
           "if(newStep !== targetStep && Date.now() - scrollDebounce > 300){",
           "if(exiting) return;\n    if(newStep < targetStep) scrollCount = 0;\n    if(newStep > targetStep && Date.now() - scrollDebounce > 300){"
+        )
+        .replace(
+          "if(newStep > targetStep && Date.now() - scrollDebounce > 300){",
+          "if(!window.matchMedia('(max-width: 880px)').matches && newStep > targetStep && Date.now() - scrollDebounce > 300){"
+        )
+        .replace(
+          "if(scrollCount >= 2){",
+          "if(scrollCount >= 2 && !window.matchMedia('(max-width: 880px)').matches){"
         )
         .replace(
           "if(nextSection){\n          nextSection.scrollIntoView({behavior: 'smooth'});\n        }",

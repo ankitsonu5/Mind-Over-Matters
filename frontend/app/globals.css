@@ -9,8 +9,10 @@
   --icon-external:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6'/%3E%3Cpath d='M20 4 11 13'/%3E%3Cpath d='M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5'/%3E%3C/svg%3E");
 }
 *{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:smooth; background:var(--bg); }
-body{ background:transparent; color:var(--ink); overflow-x:hidden;
+*{ scrollbar-width:none; -ms-overflow-style:none; }
+*::-webkit-scrollbar{ display:none; width:0; height:0; }
+html{ scroll-behavior:smooth; background:var(--bg); overflow-x:clip; }
+body{ background:transparent; color:var(--ink); overflow-x:clip;
   font-family:"Montserrat",system-ui,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
 .mono{ font-family:"Montserrat",sans-serif; }
 
@@ -202,13 +204,20 @@ nav .menu a:hover{ opacity:1; color:var(--gold-bright); }
 .ch-title{ font-family:"Cinzel",Georgia,serif; font-weight:700; font-size:clamp(2.2rem,6vw,4.2rem); letter-spacing:.005em; line-height:1; }
 .ch-title em{ font-style:normal; color:var(--cyan); -webkit-text-stroke:0; padding-left:.12em; }
 .ch-narr{ max-width:48ch; color:var(--muted); font-size:1.02rem; line-height:1.75; }
+@media (max-width:760px){
+  .chapter{ min-height:44vh; min-height:44svh; padding:2.5vh 18px; padding:2.5svh 18px; }
+  .chapter .ch-line{ height:24px; }
+  .ch-inner{ gap:8px; padding:12px 0; }
+  .ch-narr{ max-width:34ch; font-size:.9rem; line-height:1.65; }
+  .mom-cta{ padding:10px 16px 28px; }
+}
 
 footer.site{ text-align:center; padding:30px; color:var(--muted); font-family:"Montserrat",sans-serif;
   font-size:.74rem; border-top:1px solid var(--line); position:relative; z-index:5; background:rgba(5,7,15,.5); }
 
 /* ===== story / chapters ===== */
 
-  #ag-ig-feed{ position:relative; width:100%; background:transparent; overflow:visible; z-index:5; }
+  #ag-ig-feed{ position:relative; width:100%; background:transparent; overflow:visible; overflow-x:clip; z-index:5; }
   #ag-ig-feed .stars{ position:absolute; inset:0; pointer-events:none; z-index:0;
     background-image:
       radial-gradient(1px 1px at 8% 18%, rgba(224,199,148,0.45) 0%, transparent 100%),
@@ -303,7 +312,7 @@ footer.site{ text-align:center; padding:30px; color:var(--muted); font-family:"M
 @media (max-width:760px){
   #ag-ig-feed.mom-ig{ padding:0; }
   .mom-ig-slide{ width:62vw; }
-  .mom-ig-viewport{ height:min(68vh,520px); perspective:1100px; }
+  .mom-ig-viewport{ height:min(68vh,520px); perspective:1100px; overflow:hidden; }
 }
 
 /* ===================== FULL-SCREEN VIDEO HERO ===================== */
